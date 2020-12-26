@@ -1,0 +1,30 @@
+<mat-drawer-container class="container">
+    <mat-drawer #drawer class="sidenav">
+        <button mat-button name="inicio" routerLink="/" (click)="drawer.toggle()">Inicio</button>
+        <button class="mat-button" name="strategy" mat-button routerLink="estrategias"
+            (click)="drawer.toggle()">Estrategias</button>
+        <button class="mat-button" name="riesgo/rendimiento" mat-button routerLink="riesgo-rendimiento"
+            (click)="drawer.toggle()">Riesgo/Rendimiento</button>
+        <button class="mat-button" name="timer" mat-button routerLink="timer" (click)="drawer.toggle()">Timer</button>
+ <!--
+     <button class="mat-button" name="admin" mat-button routerLink="new-libreta"
+         (click)="drawer.toggle()">Hemeroteca</button>
+     <button class="mat-button" name="admin" mat-button routerLink="new-libreta"
+         (click)="drawer.toggle()">Curriculum</button>
+ -->
+    </mat-drawer>
+    
+    <div class="sidenav-content">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row class="toolbar">
+                <button name="menu" aria-hidden="true" class="nav-link1" mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <div class="title" routerLink="/">KamAnalysis</div>
+                <div class="time" routerLink="timer">{{hours}}:{{minutes}}:{{seconds}}</div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

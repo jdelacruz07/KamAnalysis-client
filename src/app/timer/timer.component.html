@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="inTimer">
+        <label for="time"> Timer:</label>
+        <input class="time" type="text" id="time" placeholder="Segundos" name="time" [(ngModel)]="time"
+            (ngModelChange)="startTimer($event)">
+    </div>
+
+    <div class="outTimer">
+        <div class="countDown" *ngIf="result > 0">{{result}}</div>
+    </div>
+    <h2 *ngIf="result == 0">Finalizado timer de {{timer}} segundos a las {{endTime}}
+    </h2>
+
+</div>

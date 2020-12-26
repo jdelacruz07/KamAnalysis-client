@@ -1,0 +1,176 @@
+h1 {
+    text-align: center;
+    color: #daf13e;
+    margin-top: 15px;
+}
+
+input {
+    border: 0;
+    background-color: transparent;
+    color: #45a12e;
+    border-bottom: 1px solid #daf13e;
+    text-align: left;
+}
+
+svg {
+    margin-right: 5px;
+}
+
+hr {
+  background-color: antiquewhite;
+}
+
+.ideas-list {
+  text-align: center;
+  color:#daf13e;
+
+}
+
+.bi {
+  color: green;
+}
+
+.header {
+    display: flex;
+    color: #daf13e;
+    margin-bottom: 15px;
+    flex-wrap: nowrap;
+}
+
+.idea-label {
+   text-align: right;
+   margin: 0 15px 0 0;
+   flex: 1 0 auto;
+
+}
+
+.idea-input {
+    flex: 1 1 auto;
+}
+  
+.ideas {
+  display: flex;
+  color:green;
+  margin-bottom: 1px;
+  align-items: center;
+}
+
+.idea {
+  flex: 1 1 auto;
+}
+
+.idea-trading-input {
+  flex: 1 1 400px;
+}
+
+.btn-edit {
+  background-color: transparent;
+  margin-right: 15px;
+  color: green;
+  border: 1px solid green ;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.strategy-list {
+    display: flex;
+    text-align: center;
+    color: #daf13e;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li {
+    list-style: none;
+}
+
+.example-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 0px 25px 0px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+.box-list {
+  max-width: 400px;
+  border: solid 1px green;
+  /*min-height: 40px;*/
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.box-list2 {
+  border: solid 1px green;
+  min-height: 60px;
+  background: whitesmoke;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+  
+.box-item {
+  padding: 10px 10px;
+  border-bottom: solid 1px green;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  color:green;
+  background:whitesmoke;
+  font-size: 14px;
+}
+
+.box-item2 {
+  padding: 20px 10px;
+  border-bottom: solid 1px green;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  color:green;
+  font-size: 14px;
+}
+
+.box-item:last-child {
+  border-bottom: solid 0px green;
+}
+
+.box-item2:last-child {
+  border-bottom: solid 0px green;
+}
+  
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+  
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+  
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+  
+.example-box:last-child {
+  border: none;
+}
+  
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
