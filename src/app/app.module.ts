@@ -18,6 +18,9 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatToolbarModule} from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button';
 import { AnalysisComponent } from './analysis/analysis.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { AnalysisComponent } from './analysis/analysis.component';
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
