@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { Subject } from 'rxjs';
-import { strategyResp, StrategyService } from '../strategy.service';
+import { StrategyService } from '../strategy.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({

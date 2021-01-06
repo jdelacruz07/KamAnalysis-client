@@ -6,10 +6,10 @@ import { StrategyComponent } from './strategy/strategy.component';
 import { TimerComponent } from './timer/timer.component';
 
 const routes: Routes = [
-  { path: '', component: AnalysisComponent},
-  { path: 'timer', component: TimerComponent},
-  { path: 'riesgo-rendimiento', component: PerformanceRiskComponent},
-  { path: 'estrategias', component: StrategyComponent}
+  { path: '', component: AnalysisComponent },
+  { path: 'timer', component: TimerComponent },
+  { path: 'riesgo-rendimiento', component: PerformanceRiskComponent },
+  { path: 'estrategias', component: StrategyComponent }
 
 
 ];

@@ -16,26 +16,26 @@ export class PerformanceRiskComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-onChangeStopLoss($event) {
-  this.stopLoss = $event;
-  this.RiskPerformance();  
-}
 
-onChangeBuySell($event) {
-  this.buySell = $event;
-  this.RiskPerformance();  
-}
-
-onChangeTakeProfit($event) {
-  this.takeProfit = $event;
-  this.RiskPerformance();  
-}
-
-RiskPerformance() {
-  if (this.takeProfit > 0 && this.buySell > 0 && this.stopLoss > 0) {
-    this.performanceRisk = (this.takeProfit - this.buySell) / (this.buySell - this.stopLoss)
+  onChangeStopLoss($event) {
+    this.stopLoss = $event;
+    this.RiskPerformance();
   }
-}
+
+  onChangeBuySell($event) {
+    this.buySell = $event;
+    this.RiskPerformance();
+  }
+
+  onChangeTakeProfit($event) {
+    this.takeProfit = $event;
+    this.RiskPerformance();
+  }
+
+  RiskPerformance() {
+    if (this.takeProfit > 0 && this.buySell > 0 && this.stopLoss > 0) {
+      this.performanceRisk = (this.takeProfit - this.buySell) / (this.buySell - this.stopLoss)
+    }
+  }
 
 }

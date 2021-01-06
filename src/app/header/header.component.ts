@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   constructor() {
     this.time$ = timer(0, 1000).pipe(map(() => new Date()));
-   }
+  }
 
   ngOnInit(): void {
     this.time$.subscribe(t => {

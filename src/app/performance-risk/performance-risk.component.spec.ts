@@ -8,9 +8,9 @@ describe('PerformanceRiskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerformanceRiskComponent ]
+      declarations: [PerformanceRiskComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

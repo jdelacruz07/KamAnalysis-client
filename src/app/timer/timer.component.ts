@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval } from 'rxjs/internal/observable/interval';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { take } from 'rxjs/internal/operators/take';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
@@ -27,7 +27,6 @@ export class TimerComponent implements OnInit {
         this.result == 0 ? this.playAudio() : this.result;
       });
       this.result = null;
-
     });
   }
 

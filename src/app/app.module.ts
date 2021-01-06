@@ -12,10 +12,10 @@ import { StrategyComponent } from './strategy/strategy.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { DragDropModule} from '@angular/cdk/drag-drop';
-import { MatIconModule} from '@angular/material/icon';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatToolbarModule} from '@angular/material/toolbar'; 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

@@ -31,28 +31,25 @@ export class StrategyService {
         'Content-Type': 'application/json',
       })
     };
-
     return this.http.post<strategy>(this.strategyUrl, strategy, httpOptions)
       .pipe(catchError(async (error) => console.log("Error en el add", error)));
   }
 
   deleteIdea(id) {
     const url = `${this.strategyUrl}/${id}`;
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
-
     return this.http.delete(url, httpOptions)
       .pipe(catchError(async (error) => console.log("Error en el add", error)));
   }
 
   getIdeas() {
     return this.http.get(this.strategyUrl + `?size=${this.size}`, { observe: 'response' });
-
   }
+
 }
 
 export interface strategyResp {
