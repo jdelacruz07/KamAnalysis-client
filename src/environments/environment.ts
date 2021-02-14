@@ -4,10 +4,9 @@
 
 export const environment = {
   production: false,
-  //url: "http://localhost:8080/api"
+  url: "http://localhost:8080/"
+  //url: "https://kamanalysis.herokuapp.com/api"
   //url: "http://kamanalysis.eu-central-1.elasticbeanstalk.com/api"
-  url: "https://kamanalysis.herokuapp.com/api"
-
 };
 
 /*

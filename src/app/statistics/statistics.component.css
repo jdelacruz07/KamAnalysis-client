@@ -1,0 +1,57 @@
+p {
+    /* justify-content: center; */
+    text-align: center;
+}
+
+label {
+    width: 125px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+table {
+    margin: auto;
+}
+
+.percentage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: large;
+    margin: 10px;
+}
+
+.element-header {
+    flex: 0 1 auto;
+    margin-right: 5px;
+}
+
+.element-percentage {
+    flex: 0 1 auto;
+    margin-right: 5px;
+    color: rgb(213, 235, 20);
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 25px 5px;
+}
+
+.header-history {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+}
+
+.element-menu {
+    flex: 0 1 auto;
+    margin-right: 5px;
+    color: chartreuse;
+    cursor: pointer;
+    
+}

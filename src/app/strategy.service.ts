@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { strategy } from './strategy/strategy.component';
@@ -11,7 +10,7 @@ import { strategy } from './strategy/strategy.component';
 })
 export class StrategyService {
   //strategy: string[] = [];
-  strategyUrl = environment.url;
+  strategyUrl = environment.url+"api";
   size: string = "100";
 
   constructor(private http: HttpClient) { }
@@ -52,8 +51,8 @@ export class StrategyService {
 
 }
 
-export interface strategyResp {
-  content: strategy;
-  pageable: string;
-  sort: string;
-}
+// export interface strategyResp {
+//   content: strategy;
+//   pageable: string;
+//   sort: string;
+// }

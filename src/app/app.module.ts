@@ -10,6 +10,7 @@ import { PerformanceRiskComponent } from './performance-risk/performance-risk.co
 import { StrategyComponent } from './strategy/strategy.component';
 
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -21,6 +22,7 @@ import { AnalysisComponent } from './analysis/analysis.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { environment } from '../environments/environment';
     TimerComponent,
     StrategyComponent,
     AnalysisComponent,
-    HeaderComponent
+    HeaderComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
