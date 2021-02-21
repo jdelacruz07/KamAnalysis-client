@@ -45,8 +45,7 @@ export class StatisticsComponent implements OnInit {
   deleteGap(id) {
     this.gapService.deleteGap(id).subscribe(() => {
       this.getGaps(this.page);
-    }
-    );
+    });
   }
 
   addGap() {
@@ -68,8 +67,7 @@ export class StatisticsComponent implements OnInit {
       console.log(gaps)
       this.gapHistory = gaps.content;
       let totalPages = gaps.totalPages;
-      let history: gap[] = this.gapHistory;
-      this.gapHistory = history.reverse();
+      console.log(this.gapHistory)
       this.updatePercentage();
       this.getMenuGaps(totalPages)
     })

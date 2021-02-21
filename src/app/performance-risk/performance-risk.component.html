@@ -3,23 +3,23 @@
 
   <div class="data">
     <div class="fieldP-R">
-      <label for="takeProfit">Toma de utilidades:</label>
-      <input maxlength="10" type="text" name="takeProfit" [(ngModel)]="takeProfit"
-        (ngModelChange)="onChangeTakeProfit($event)">
+      <label for="stopLoss">StopLoss:</label>
+      <input maxlength="10" type="text" name="stopLoss" [(ngModel)]="stopLoss"
+        (ngModelChange)="onChangeValue($event)">
     </div>
     <div class="fieldP-R">
       <label for="buySell">Compra/Venta: </label>
-      <input maxlength="10" type="text" name="buySell" [(ngModel)]="buySell" (ngModelChange)="onChangeBuySell($event)">
+      <input maxlength="10" type="text" name="buySell" [(ngModel)]="buySell" (ngModelChange)="onChangeValue($event)">
     </div>
     <div class="fieldP-R">
-      <label for="stopLoss">StopLoss:</label>
-      <input maxlength="10" type="text" name="stopLoss" [(ngModel)]="stopLoss"
-        (ngModelChange)="onChangeStopLoss($event)">
+      <label for="takeProfit">Toma de utilidades:</label>
+      <input maxlength="10" type="text" name="takeProfit" [(ngModel)]="takeProfit"
+        (ngModelChange)="onChangeValue($event)">
     </div>
   </div>
   <div class="performance">
-    <p result-title>Rendimiento/Riesgo: </p>
+    <p result-title>Relación rendimiento/riesgo: </p>
     <span class="result">{{performanceRisk | number: '1.0-2'}}</span>
-    <p>veces.</p>
+    <p>a 1.</p>
   </div>
 </div>
