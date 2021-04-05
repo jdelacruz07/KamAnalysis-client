@@ -1,19 +1,25 @@
 <div>
-  <h1>Estrategias y conclusiones</h1>
+  <div class="header">
+    <div class="spacer"></div>
+    <h1>Estrategias y conclusiones</h1>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+  </div>
+
   <section>
-    <div class="header">
-      <div class="spacer"></div>
+    <div class="header-idea">
+      <!-- <div class="spacer"></div> -->
       <label for="idea" class="idea-label">Idea de trading:</label>
       <input id="newIdea" class="idea-input" type="text" name="newIdea" [(ngModel)]="newIdea"
         (ngModelChange)="inputChange($event)">
-      <div class="spacer"></div>
+      <!-- <div class="spacer"></div> -->
     </div>
   </section>
 
   <section>
     <h2 class="ideas-list">Ideas</h2>
     <div cdkDropList #ideasList="cdkDropList" [cdkDropListData]="ideas"
-      [cdkDropListConnectedTo]="[strategiesList, conclusionList]" class="box-list" (cdkDropListDropped)="dropIdeas($event)">
+      [cdkDropListConnectedTo]="[strategiesList, conclusionList]" class="box-list"
+      (cdkDropListDropped)="dropIdeas($event)">
       <div class="box-item" *ngFor="let item of ideas" cdkDrag>{{item.idea}}</div>
     </div>
   </section>
@@ -23,7 +29,8 @@
       <h2>Estrategias</h2>
 
       <div cdkDropList #strategiesList="cdkDropList" [cdkDropListData]="strategies"
-        [cdkDropListConnectedTo]="[ideasList, conclusionList]" class="box-list2" (cdkDropListDropped)="dropStrategies($event)">
+        [cdkDropListConnectedTo]="[ideasList, conclusionList]" class="box-list2"
+        (cdkDropListDropped)="dropStrategies($event)">
         <div class="box-item2" *ngFor="let item of strategies" cdkDrag>{{item.idea}}</div>
       </div>
     </div>
@@ -32,7 +39,8 @@
       <h2>Conclusiones</h2>
 
       <div cdkDropList #conclusionList="cdkDropList" [cdkDropListData]="conclusion"
-        [cdkDropListConnectedTo]="[ideasList, strategiesList]" class="box-list2" (cdkDropListDropped)="dropConclusion($event)">
+        [cdkDropListConnectedTo]="[ideasList, strategiesList]" class="box-list2"
+        (cdkDropListDropped)="dropConclusion($event)">
         <div class="box-item2" *ngFor="let item of conclusion" cdkDrag>{{item.idea}}</div>
       </div>
     </div>
@@ -50,7 +58,7 @@
             </ng-template>
             <ng-template #showEdit>
               <input id="newIdea" class="idea-trading-input" type="text" name="newIdea" value="{{item.idea}}"
-                (keyup.enter)="inputUpdate(item.id, $event.target.value)">
+                (keyup.enter)="updateIdea(item.id, $event.target.value)">
             </ng-template>
 
             <div class="spacer"></div>

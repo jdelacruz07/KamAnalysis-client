@@ -1,14 +1,18 @@
 <div class="container">
-    <div class="inTimer">
-        <label for="time"> Timer:</label>
+    <h1>Timer</h1>
+    <form class="timer">
+        <label for="time"> Insertar tiempo:</label>
         <input class="time" type="text" id="time" placeholder="Segundos" name="time" [(ngModel)]="time"
-            (ngModelChange)="startTimer($event)">
-    </div>
-
-    <div class="outTimer">
+            (ngModelChange)="startTimer($event)" [disabled]="!finished">
+    </form>
+    <div class="error" *ngIf="error">Error, no acepta valores alfanumericos</div>
+    <div class="finishTimer">
         <div class="countDown" *ngIf="result > 0">{{result}}</div>
     </div>
     <h2 *ngIf="result == 0">Finalizado timer de {{timer}} segundos a las {{endTime}}
     </h2>
+    <div *ngIf="!finished && result != null" class="restart">
+        <button class="btn btn-success" (click)="restartNow()">Reiniciar</button>
+    </div>
 
 </div>

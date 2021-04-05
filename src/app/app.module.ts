@@ -10,8 +10,8 @@ import { PerformanceRiskComponent } from './performance-risk/performance-risk.co
 import { StrategyComponent } from './strategy/strategy.component';
 
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule} from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { XhrInterceptorService } from './xhr-interceptor.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     StrategyComponent,
     AnalysisComponent,
     HeaderComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 .container {
     margin-top: 15px;
-    max-width: 400px;
+    /* max-width: 400px; */
     padding: 25px;
     background-image: url(https://kamanalysys.s3.eu-central-1.amazonaws.com/assets/images/reloj.jpeg); 
 /*    
@@ -9,14 +9,17 @@
     background-size: 100% 100%;
 }
 
+h1 {
+    text-align: center;
+    color: #daf13e;
+}
 h2 {
     text-align: center;  
     color: green;
 }
 
 label {
-    margin-right: 15px;
-    /*color: #daf13e;*/
+    /* margin-right: 15px;  */
     color: green;
 }
 
@@ -32,27 +35,37 @@ input::placeholder {
 
 }
 
+.error {
+    text-align: center;
+    color: brown;
+}
+
+.restart {
+    display: flex;
+    justify-content: center;
+}
+
 .back {
     background-color: honeydew;
 }
 
 .time {
-    color: green;
     background-color: transparent;
     border: 1px solid green;
-/*    border: 1px solid #daf13e;*/
+    max-width: 120px;
+    /* background-color: #2e2ebd; */
+    /* color: #daf13e; */
+    color: green;
 }
 
-.inTimer {
+.timer {
     display: flex;
-    text-align: center ;
     font-size: 20px;
-    align-items: center;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.outTimer {
+.finishTimer {
     display: flex;
     justify-content: center;
     margin: 15px;
@@ -64,10 +77,12 @@ input::placeholder {
     color: green;
     background-color: transparent;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
     border: 1px solid green;
-    
 }
 
+.spacer {
+    display: 1 1 auto;
+}

@@ -1,21 +1,53 @@
 
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { reduce } from 'rxjs/operators';
 import { GapService } from '../gap.service';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+  styleUrls: ['./statistics.component.css'],
+  animations: [
+    trigger('delete', [
+      state('create', style({
+        opacity: 1,
+        color: '#daf13e',
+      })),
+      state('delete', style({
+        opacity: 1,
+        color: '#daf13e',
+      })),
+      transition('void => *', [
+        animate('700ms ease-in', keyframes([
+          style({ transform: 'translateX(-60px)', offset: 0 }),
+          style({ color: "blue", offset: 0 }),
+          style({ color: "#daf13e", offset: 1 }),
+          style({ transform: 'translateX(0%)', offset: 1 }),
+        ]))
+      ]),
+      transition('* => void', [
+        animate('300ms ease-out', keyframes([
+          style({ transform: 'translateX(0%)', offset: 0 }),
+          style({ color: "red", offset: 1 }),
+          style({ transform: 'translateX(-60px)', offset: 1 }),
+        ]))
+      ]),
+    ]),
+
+  ]
 })
 export class StatisticsComponent implements OnInit {
 
   checkoutForm: FormGroup;
-  gapHistory: any;
+  gapHistory: any[];
   percentage: number = 0;
   dateError;
   menuDisplay = [];
   page = 0;
+
+  isDelete = false;
 
   constructor(private formBuilder: FormBuilder, private gapService: GapService) {
     const dateLength = 10;
@@ -42,18 +74,22 @@ export class StatisticsComponent implements OnInit {
     }
   }
 
-  deleteGap(id) {
+  deleteGap(id, index) {
+    this.isDelete = true;
     this.gapService.deleteGap(id).subscribe(() => {
-      this.getGaps(this.page);
+      // this.getGaps(this.page);
+      this.gapHistory.splice(index, 1);
     });
   }
 
   addGap() {
-    let gap: gap = this.checkoutForm.value;
-    this.gapService.addGap(gap).subscribe(() => {
+    this.isDelete = false;
+    let gap: Gap = this.checkoutForm.value;
+    this.gapService.addGap(gap).subscribe(newGap => {
       this.checkoutForm.reset();
       this.updatePercentage();
-      this.getGaps(this.page);
+      // this.getGaps(this.page);
+      this.gapHistory.unshift(newGap);
       this.dateError = null;
     }, x => {
       console.log("El error es: ", x)
@@ -64,10 +100,8 @@ export class StatisticsComponent implements OnInit {
 
   getGaps(pageSelect) {
     this.gapService.getGaps(pageSelect).subscribe((gaps: Pageable) => {
-      console.log(gaps)
       this.gapHistory = gaps.content;
       let totalPages = gaps.totalPages;
-      console.log(this.gapHistory)
       this.updatePercentage();
       this.getMenuGaps(totalPages)
     })
@@ -89,7 +123,7 @@ export class StatisticsComponent implements OnInit {
 
 }
 
-export interface gap {
+export interface Gap {
   id: string;
   gapClose: string;
   dateSelected: Date;

@@ -15,7 +15,7 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
         color: '#daf13e',
       })),
       transition('* => open', [
-        animate('2s', keyframes([
+        animate('4s', keyframes([
           style({ transform: 'translateX(-100%)', offset: 0 }),
           style({ color: "#daf13e", offset: 1 }),
           style({ transform: 'translateX(0%)', offset: 1 }),
@@ -28,9 +28,9 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
         color: '#daf13e',
       })),
       transition('* => active', [
-        animate('5s', keyframes([
+        animate('4s', keyframes([
           style({ transform: 'translateX(0%)', offset: 1 }),
-          style({ opacity: 0, offset: 1 }),
+          style({ opacity: 1, offset: 1 }),
         ]))
       ]),
     ])

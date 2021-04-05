@@ -1,20 +1,21 @@
 <div class="container">
   <h1>Rendimiento/Riesgo</h1>
-
   <div class="data">
     <div class="fieldP-R">
       <label for="stopLoss">StopLoss:</label>
-      <input maxlength="10" type="text" name="stopLoss" [(ngModel)]="stopLoss"
-        (ngModelChange)="onChangeValue($event)">
+      <input #stop maxlength="10" type="text" name="stopLoss" [(ngModel)]="stopLoss"
+        (keyup.enter)="onChangeValue(stop.value, 'buy')">
+      <!-- (ngModelChange)="onChangeValue($event)"> -->
     </div>
     <div class="fieldP-R">
       <label for="buySell">Compra/Venta: </label>
-      <input maxlength="10" type="text" name="buySell" [(ngModel)]="buySell" (ngModelChange)="onChangeValue($event)">
+      <input #buy maxlength="10" type="text" name="buySell" [(ngModel)]="buySell"
+        (keyup.enter)="onChangeValue(buy.value, 'profit')">
     </div>
     <div class="fieldP-R">
       <label for="takeProfit">Toma de utilidades:</label>
-      <input maxlength="10" type="text" name="takeProfit" [(ngModel)]="takeProfit"
-        (ngModelChange)="onChangeValue($event)">
+      <input #profit maxlength="10" type="text" name="takeProfit" [(ngModel)]="takeProfit"
+        (keyup.enter)="onChangeValue(profit.value, 'stop')">
     </div>
   </div>
   <div class="performance">
