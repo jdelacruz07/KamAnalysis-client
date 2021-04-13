@@ -1,17 +1,15 @@
 <div>
   <div class="header">
-    <div class="spacer"></div>
+    <div></div>
     <h1>Estrategias y conclusiones</h1>
     <button class="btn btn-primary" (click)="logout()">Logout</button>
   </div>
 
   <section>
     <div class="header-idea">
-      <!-- <div class="spacer"></div> -->
       <label for="idea" class="idea-label">Idea de trading:</label>
-      <input id="newIdea" class="idea-input" type="text" name="newIdea" [(ngModel)]="newIdea"
+      <input placeholder="Idea" id="newIdea" class="idea-input" type="text" name="newIdea" [(ngModel)]="newIdea"
         (ngModelChange)="inputChange($event)">
-      <!-- <div class="spacer"></div> -->
     </div>
   </section>
 

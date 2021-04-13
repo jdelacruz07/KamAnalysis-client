@@ -5,13 +5,8 @@ h1 {
 
 label {
     color: #daf13e;
-    width: 130px;
+    width: 125px;
     text-align: right;
-}
-
-.data {
-    display: flex;
-    flex-wrap: wrap;
 }
 
 input {
@@ -23,25 +18,35 @@ input {
     width: 100px;
 }
 
-.fieldP-R {
+.error-numerico {
+    color: brown;
+}
+.fields {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.field {
     flex: 1 1 auto;
 }
 
-
-.performance {
-    margin-top: 15px;
-    color: #daf13e;
-    height: 60px;
+.calculate {
     display: flex;
-    line-height: 60px;
+    justify-content: space-evenly;
 }
 
-.result-title {
-    width: 130;
+.result-items {
+    color: #daf13e;
+    display: flex;
+    align-items: center ;
 }
 
 .result {
+    align-content: center;
     width: 100px;
+    height: 47px;
+    line-height: 47px;
     font-size: 30px;
     font-weight: 800;
     text-align: center;
@@ -51,5 +56,4 @@ input {
     box-shadow: 5px 5px 15px rgb(87, 93, 173);
     border-radius: 5px;
     margin: 0 15px 0 15px;
-    height: 60px;
 }

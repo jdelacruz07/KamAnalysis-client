@@ -34,7 +34,7 @@ export class StrategyComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout().subscribe();
+    this.auth.logout();
   }
 
 

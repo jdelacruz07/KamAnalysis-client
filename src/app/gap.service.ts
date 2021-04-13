@@ -15,8 +15,8 @@ export class GapService {
     return this.http.post(this.gapUrl, gap, httpOptions);
   }
 
-  getGaps(page) {
-    let url = `${this.gapUrl}?page=${page}`
+  getGaps(page, size) {
+    let url = `${this.gapUrl}?page=${page}&size=${size}`
     return this.http.get(url);
   }
 

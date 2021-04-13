@@ -5,7 +5,7 @@
         <input class="time" type="text" id="time" placeholder="Segundos" name="time" [(ngModel)]="time"
             (ngModelChange)="startTimer($event)" [disabled]="!finished">
     </form>
-    <div class="error" *ngIf="error">Error, no acepta valores alfanumericos</div>
+    <div class="error" *ngIf="error">Error, no acepta valores alfanumericos.</div>
     <div class="finishTimer">
         <div class="countDown" *ngIf="result > 0">{{result}}</div>
     </div>

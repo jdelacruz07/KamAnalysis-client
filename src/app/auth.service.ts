@@ -1,13 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  isAuthenticate: boolean = false;
+  router: any;
 
   constructor(private http: HttpClient) { }
+
+  authenticated() {
+    return this.isAuthenticate;
+  }
 
   login(credentials: Credentials) {
     const headers = new HttpHeaders(credentials ? {
@@ -24,7 +29,9 @@ export class AuthService {
     //     'X-XSRF-TOKEN': CSRF_TOKEN 
     //   })
     // };
-    return this.http.post('logout', {});
+    return this.http.post('logout', {}).subscribe(() => {
+      this.isAuthenticate = false;
+    });
   }
 }
 

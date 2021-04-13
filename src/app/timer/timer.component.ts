@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs/internal/observable/interval';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { take } from 'rxjs/internal/operators/take';
 import { Subject } from 'rxjs';
-import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timer',
@@ -28,11 +26,11 @@ export class TimerComponent implements OnInit {
       this.workTimer(seconds)
     });
   }
-  
+
   ngOnInit(): void {
   }
-  
-  workTimer (seconds) {
+
+  workTimer(seconds) {
     this.error = false;
     if (seconds > 0) {
       this.result = seconds;

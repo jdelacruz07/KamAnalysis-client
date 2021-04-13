@@ -47,18 +47,38 @@ export class AnalysisComponent implements OnInit, OnDestroy {
 
   isOpen = true;
   isActive = true;
-
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-  }
+  imgSize: string;
+  color: string;
 
   constructor(private apiCrypto: ApiCryptoService) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
+    this.imgSize = "resize";
+    this.color = "color1";
   }
 
   ngOnInit(): void {
     this.endCrypto$ = this.crypto$.subscribe();
+  }
+
+  onChangeColor() {
+    if (this.color === "color1") {
+      this.color = "color2"
+    }
+    else {
+      this.color = "color1"
+    }
+  }
+
+  onChangeSize() {
+    if (this.imgSize === "size") {
+      this.imgSize = "resize"
+    } else {
+      this.imgSize = "size"
+    }
+  }
+
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 
   getCrypto() {

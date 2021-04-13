@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AnalysisComponent } from './analysis/analysis.component';
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { PerformanceRiskComponent } from './performance-risk/performance-risk.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: '', component: AnalysisComponent },
   { path: 'timer', component: TimerComponent },
   { path: 'riesgo-rendimiento', component: PerformanceRiskComponent },
-  { path: 'estrategias', component: StrategyComponent },
+  { path: 'estrategias', component: StrategyComponent, canActivate: [AuthGuard] },
   { path: 'estadisticas', component: StatisticsComponent },
   { path: 'login', component: LoginComponent },
 

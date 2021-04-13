@@ -1,8 +1,8 @@
 
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { reduce } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { GapService } from '../gap.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { GapService } from '../gap.service';
         opacity: 1,
         color: '#daf13e',
       })),
-      transition('void => *', [
+      transition('void => create', [
         animate('700ms ease-in', keyframes([
           style({ transform: 'translateX(-60px)', offset: 0 }),
           style({ color: "blue", offset: 0 }),
@@ -27,7 +27,7 @@ import { GapService } from '../gap.service';
           style({ transform: 'translateX(0%)', offset: 1 }),
         ]))
       ]),
-      transition('* => void', [
+      transition('delete => void', [
         animate('300ms ease-out', keyframes([
           style({ transform: 'translateX(0%)', offset: 0 }),
           style({ color: "red", offset: 1 }),
@@ -43,13 +43,14 @@ export class StatisticsComponent implements OnInit {
   checkoutForm: FormGroup;
   gapHistory: any[];
   percentage: number = 0;
-  dateError;
+  gapError = null;
   menuDisplay = [];
   page = 0;
 
-  isDelete = false;
+  isDelete = null;
+  isAuthenticate = false;
 
-  constructor(private formBuilder: FormBuilder, private gapService: GapService) {
+  constructor(private formBuilder: FormBuilder, private gapService: GapService, private auth: AuthService) {
     const dateLength = 10;
     let todayDate = new Date().toISOString().substring(0, dateLength);
     this.checkoutForm = this.formBuilder.group({
@@ -60,20 +61,25 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGaps(this.page);
+    this.isAuthenticated();
+    console.log("Esta autorizado ", this.isAuthenticate)
   }
-
+  
+  isAuthenticated () {
+    return this.isAuthenticate = this.auth.authenticated();
+  }
   onChangePage(i) {
     this.page = i;
     this.getGaps(i);
   }
-
+  
   getMenuGaps(totalPages) {
     this.menuDisplay = [];
     for (let index = 0; index < totalPages; index++) {
       this.menuDisplay.push(index + 1);
     }
   }
-
+  
   deleteGap(id, index) {
     this.isDelete = true;
     this.gapService.deleteGap(id).subscribe(() => {
@@ -81,25 +87,33 @@ export class StatisticsComponent implements OnInit {
       this.gapHistory.splice(index, 1);
     });
   }
-
+  
   addGap() {
+    this.gapError = null;
     this.isDelete = false;
     let gap: Gap = this.checkoutForm.value;
     this.gapService.addGap(gap).subscribe(newGap => {
       this.checkoutForm.reset();
       this.updatePercentage();
-      // this.getGaps(this.page);
       this.gapHistory.unshift(newGap);
-      this.dateError = null;
-    }, x => {
-      console.log("El error es: ", x)
-      this.dateError = "Fecha Duplicada";
+    }, (error:Response) => {
+      console.log("El error es: ", error.status )
+      if (error.status === 401) {
+        this.gapError = "Usuario no autorizado";
+      } else {
+        if (error.status === 302) {
+          this.gapError = "Fecha duplicada"
+        }
+      }
       this.checkoutForm.reset();
     })
   }
-
+  
   getGaps(pageSelect) {
-    this.gapService.getGaps(pageSelect).subscribe((gaps: Pageable) => {
+    this.isDelete = false;
+    let size = 20;
+    this.gapService.getGaps(pageSelect, size).subscribe((gaps: Pageable) => {
+      this.isDelete = true;
       this.gapHistory = gaps.content;
       let totalPages = gaps.totalPages;
       this.updatePercentage();
@@ -125,7 +139,7 @@ export class StatisticsComponent implements OnInit {
 
 export interface Gap {
   id: string;
-  gapClose: string;
+  gapIsClose: string;
   dateSelected: Date;
 }
 

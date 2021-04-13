@@ -2,12 +2,13 @@
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div class="input-text">
         <!-- <label for="user">Usuario</label> -->
-        <input placeholder="username" type="text" class="form-control" required name="user" [(ngModel)]="user">
+        <input placeholder="Username" type="text" class="form-control" required name="user" [(ngModel)]="user">
     </div>
     <br>
     <div class="input-text">
         <!-- <label for="password">Password</label> -->
-        <input  placeholder="password" type="password" class="form-control" required name="password" [(ngModel)]="password">
+        <input placeholder="Password" type="password" class="form-control" required name="password"
+            [(ngModel)]="password">
     </div>
     <button [@login]="continue ? 'continue': 'stop'" class="btn btn-primary" type="submit">Iniciar sesión</button>
 </form>

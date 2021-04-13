@@ -8,37 +8,36 @@
     <form [formGroup]="checkoutForm" (ngSubmit)="addGap()">
         <div class="form">
             <div>
-                <div>
-                    <label for="gap">Se cierra el hueco:</label>
-                    <input id="gap" type="radio" value="Si" formControlName="gapClose">Si
-                    <input id="gap" type="radio" value="No" formControlName="gapClose">No
-                </div>
-                <div>
-                    <label for="date">Fecha: </label>
-                    <input class="date" id="date" type="date" formControlName="dateSelected">
-                </div>
+                <label for="gap">Se cierra el hueco:</label>
+                <input id="gap" type="radio" value="Si" formControlName="gapClose">Si
+                <input id="gap" type="radio" value="No" formControlName="gapClose">No
             </div>
             <div>
+                <label for="date">Fecha: </label>
+                <input class="date" id="date" type="date" formControlName="dateSelected">
+            </div>
+            <div>
+                <!-- <button class="btn btn-success" type="submit" [disabled]="!checkoutForm.valid" [disabled]="!isAuthenticated()">Guardar</button> -->
                 <button class="btn btn-success" type="submit" [disabled]="!checkoutForm.valid">Guardar</button>
             </div>
         </div>
     </form>
-    <span *ngIf="dateError">Fecha Duplicada</span>
-    <!-- <p>Form Status: {{checkoutForm.status}}</p> -->
+    <div class="gap-error" *ngIf="gapError">{{gapError}}</div>
+    <!-- <p>Form Status: {{checkoutForm.valid}}</p> -->
 
     <div class="header-history">Historico</div>
     <table>
         <th>Fecha</th>
         <th>Cierre</th>
-        <tr [@delete]="isDelete ? 'delete' : 'create'" *ngFor="let gap of gapHistory; let i = index">
-            <td>
+        <tr [@delete]="isDelete ? 'delete': 'create'" *ngFor="let gap of gapHistory; let i = index">
+            <td class="data-gap">
                 {{gap.dateSelected | date: 'd MMM, y'}}
             </td>
-            <td>
+            <td class="data-gap">
                 {{gap.gapClose}}
             </td>
             <td>
-                <button class="btn btn-secondary" (click)="deleteGap(gap.id, i)">Eliminar</button>
+                <button [disabled]="!isAuthenticated()" class="btn btn-secondary" (click)="deleteGap(gap.id, i)">Eliminar</button>
             </td>
         </tr>
     </table>

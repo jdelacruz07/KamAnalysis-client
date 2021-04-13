@@ -28,13 +28,6 @@ input {
     text-align: center;
 }
 
-input::placeholder {
-    color: green;
-    /*color: #daf13e;*/
-    opacity: .5;
-
-}
-
 .error {
     text-align: center;
     color: brown;
@@ -53,9 +46,7 @@ input::placeholder {
     background-color: transparent;
     border: 1px solid green;
     max-width: 120px;
-    /* background-color: #2e2ebd; */
-    /* color: #daf13e; */
-    color: green;
+    color: #daf13e;
 }
 
 .timer {

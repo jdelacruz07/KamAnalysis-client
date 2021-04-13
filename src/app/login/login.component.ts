@@ -33,7 +33,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
           style({ transform: 'translateX(-10px)', offset: .8 }),
           style({ transform: 'translateX(10px)', offset: .9 }),
           style({ transform: 'translateX(-10px)', offset: 1 }),
-          style({ color: "red", offset: 1  }),
+          style({ color: "red", offset: 1 }),
         ]))
       ]),
       // transition('* => continue', [
@@ -44,32 +44,44 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
       //   ]))
       // ]),
     ]),
-    
+
   ]
 })
 export class LoginComponent implements OnInit {
 
   password;
   user;
-
   continue = true;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.verifyUser();
   }
-  
+
+  verifyUser() {
+    if (this.auth.authenticated()) {
+      console.log("Esta autorizado en login ", this.auth.authenticated())
+      this.router.navigate(['']);
+    }
+
+  }
+
   onSubmit() {
     this.continue = true;
     let credentials: Credentials = { user: this.user, password: this.password }
-    this.auth.login(credentials).subscribe( () => {
+    this.auth.login(credentials).subscribe(() => {
+      this.auth.isAuthenticate = true;
       this.router.navigate([''])
+      this.continue = true;
     }, error => {
       this.continue = false;
+      console.log("El error es ", error)
     });
+
   }
 
   logout() {
-    this.auth.logout().subscribe();
+    this.auth.logout();
   }
 }

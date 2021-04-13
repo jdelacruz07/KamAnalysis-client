@@ -23,9 +23,7 @@ hr {
 
 .header {
   display: flex;
-  flex: 1 1 auto;
   justify-content: space-between;
-  text-align: center;
 }
 
 .ideas-list {
@@ -42,7 +40,6 @@ hr {
     display: flex;
     color: #daf13e;
     margin-bottom: 15px;
-    flex-wrap: nowrap;
 }
 
 .header-idea {
@@ -50,6 +47,11 @@ hr {
   color: #daf13e;
   margin-bottom: 15px;
   flex-wrap: nowrap;
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
 }
 
 .idea-label {

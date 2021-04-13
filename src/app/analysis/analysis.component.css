@@ -4,4 +4,62 @@
   transform: translateX(100%);
 }
 
+h2 {
+  color: cadetblue;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+
+.strategy-head {
+  display: inline-block;
+}
+
+.strategy {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.strategy .container-img {
+  margin-right: 5px;
+}
+
+.strategy-img {
+  max-width: 100%;
+}
+
+@media (min-width: 480px)  { 
+
+  .strategy-head {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .strategy-head .container-img {
+    margin-right: 5px;
+  }
+
+  .container {
+    flex-wrap: nowrap;
+    padding: 0;
+  }
+  
+  .strategy .container-img {
+    margin: 0;
+  }
+  
+  .strategy {
+    display: inline-block;
+    margin-right: 5px;
+  }
+    
+  .strategy:last-child {
+    margin-right: 0px;
+  }
+  
+}
+
   
