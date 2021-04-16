@@ -10,8 +10,8 @@ import { GapService } from '../gap.service';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css'],
   animations: [
-    trigger('delete', [
-      state('create', style({
+    trigger('gapAnimation', [
+      state('add', style({
         opacity: 1,
         color: '#daf13e',
       })),
@@ -19,7 +19,7 @@ import { GapService } from '../gap.service';
         opacity: 1,
         color: '#daf13e',
       })),
-      transition('void => create', [
+      transition('void => add', [
         animate('700ms ease-in', keyframes([
           style({ transform: 'translateX(-60px)', offset: 0 }),
           style({ color: "blue", offset: 0 }),
@@ -47,7 +47,7 @@ export class StatisticsComponent implements OnInit {
   menuDisplay = [];
   page = 0;
 
-  isDelete = null;
+  animationList = null;
   isAuthenticate = false;
 
   constructor(private formBuilder: FormBuilder, private gapService: GapService, private auth: AuthService) {
@@ -64,40 +64,42 @@ export class StatisticsComponent implements OnInit {
     this.isAuthenticated();
     console.log("Esta autorizado ", this.isAuthenticate)
   }
-  
-  isAuthenticated () {
+
+  isAuthenticated() {
     return this.isAuthenticate = this.auth.authenticated();
   }
+
   onChangePage(i) {
+    this.animationList = null;
     this.page = i;
     this.getGaps(i);
   }
-  
+
   getMenuGaps(totalPages) {
     this.menuDisplay = [];
     for (let index = 0; index < totalPages; index++) {
       this.menuDisplay.push(index + 1);
     }
   }
-  
+
   deleteGap(id, index) {
-    this.isDelete = true;
+    this.gapError = null;
+    this.animationList = "delete";
     this.gapService.deleteGap(id).subscribe(() => {
-      // this.getGaps(this.page);
       this.gapHistory.splice(index, 1);
     });
   }
-  
+
   addGap() {
     this.gapError = null;
-    this.isDelete = false;
+    this.animationList = "add";
     let gap: Gap = this.checkoutForm.value;
     this.gapService.addGap(gap).subscribe(newGap => {
       this.checkoutForm.reset();
       this.updatePercentage();
       this.gapHistory.unshift(newGap);
-    }, (error:Response) => {
-      console.log("El error es: ", error.status )
+    }, (error: Response) => {
+      console.log("El error es: ", error.status)
       if (error.status === 401) {
         this.gapError = "Usuario no autorizado";
       } else {
@@ -108,12 +110,10 @@ export class StatisticsComponent implements OnInit {
       this.checkoutForm.reset();
     })
   }
-  
+
   getGaps(pageSelect) {
-    this.isDelete = false;
     let size = 20;
     this.gapService.getGaps(pageSelect, size).subscribe((gaps: Pageable) => {
-      this.isDelete = true;
       this.gapHistory = gaps.content;
       let totalPages = gaps.totalPages;
       this.updatePercentage();

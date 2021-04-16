@@ -23,7 +23,7 @@ export class PerformanceRiskComponent implements OnInit {
     this.ratioForm = formBuilder.group({
       stopLoss: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]],
       buySell: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]],
-      takeProfit: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'),Validators.required]]
+      takeProfit: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]]
     })
   }
 
@@ -47,12 +47,12 @@ export class PerformanceRiskComponent implements OnInit {
     let stopLoss = this.ratioForm.value.stopLoss;
     let buySell = this.ratioForm.value.buySell;
     let takeProfit = this.ratioForm.value.takeProfit;
-    if (takeProfit >= 0 && buySell >= 0 && stopLoss >= 0 ) {
+    if (takeProfit >= 0 && buySell >= 0 && stopLoss >= 0) {
       this.performanceRisk = (takeProfit - buySell) / (buySell - stopLoss)
     } else {
       this.performanceRisk = null;
     }
-    
+
   }
 
 }

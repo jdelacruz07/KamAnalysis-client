@@ -1,48 +1,29 @@
-<p class="banner" [@banner]="isActive ? 'active' : 'closed'">Toda teoria es correcta hasta que se demuestra que es
-    incorrecta</p>
+<section>
+    <p class="crypto" [@outIn]="outIn">{{base}}-{{currency}} Compra: {{amount}}</p>
+</section>
 
-<p class="crypto" [@openClose]="isOpen ? 'open' : 'closed'">{{base}}-{{currency}} Compra: {{amount}}</p>
-<div class="strategy-head">
-    <div class="container-img">
-        <img class="strategy-img" src="../assets/img/USDMXN.png" alt="">
-    </div>
-    <div class="strategy-item">
-        <p>USD/MXN </p>
-        <p>Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.</p>
-        <p>Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22 </p>
-        <div>Detalles</div>
-    </div>
-</div>
-<div class="container">
-    <div class="strategy">
+<div [@imgAnimation]="imgAnimation">
+    <section class="strategy-head" *ngFor="let item of asset">
         <div class="container-img">
-            <img class="strategy-img" src="../assets/img/USDMXN.png" alt="">
+            <img class="strategy-img" [src]="item.srcImage" [alt]="item.alt">
         </div>
         <div class="strategy-item">
-            <p>USD/MXN </p>
-            <p>Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.</p>
-            <p>Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22 </p>
+            <p>{{item.name}} </p>
+            <p>{{item.strategy}}</p>
+            <p>{{item.price}} </p>
             <div>Detalles</div>
         </div>
-    </div>
-    <div class="strategy">
-        <div class="container-img">
-            <img class="strategy-img" src="../assets/img/USDMXN.png" alt="">
+    </section>
+    <section class="container">
+        <div class="strategy" *ngFor="let item2 of assets; let i = index">
+            <div class="container-img">
+                <img class="strategy-img" [src]="item2.srcImage" [alt]="item2.alt">
+            </div>
+            <div class="strategy-item">
+                <p>{{item2.name}} </p>
+                <p>{{item2.strategy}}</p>
+                <p>{{item2.price}} </p>
+            </div>
         </div>
-        <div class="strategy-item">
-            <p>USD/MXN </p>
-            <p>Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.</p>
-            <p>Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22 </p>
-        </div>
-    </div>
-    <div class="strategy">
-        <div class="container-img">
-            <img class="strategy-img" src="../assets/img/USDMXN.png" alt="">
-        </div>
-        <div class="strategy-item">
-            <p>USD/MXN </p>
-            <p>Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.</p>
-            <p>Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22 </p>
-        </div>
-    </div>
+    </section>
 </div>

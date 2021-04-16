@@ -7,7 +7,8 @@
         <input #stopLoss placeholder="100.00" maxlength="10" type="text" formControlName="stopLoss"
           (keyup.enter)="onChangeValue('buySell')">
         <div *ngIf="ratioForm.get('stopLoss').errors">
-          <div *ngIf="ratioForm.get('stopLoss').errors.pattern" class="error-numerico">Acepta numeros enteros o con decimales.</div>
+          <div *ngIf="ratioForm.get('stopLoss').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+            decimales.</div>
         </div>
       </div>
       <div class="field">
@@ -15,7 +16,8 @@
         <input #buySell placeholder="150.00" maxlength="10" type="text" formControlName="buySell"
           (keyup.enter)="onChangeValue('profit')">
         <div *ngIf="ratioForm.get('buySell').errors">
-          <div *ngIf="ratioForm.get('buySell').errors.pattern" class="error-numerico">Acepta numeros enteros o con decimales.</div>
+          <div *ngIf="ratioForm.get('buySell').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+            decimales.</div>
         </div>
       </div>
       <div class="field">
@@ -23,7 +25,8 @@
         <input #takeProfit placeholder="200.00" maxlength="10" type="text" formControlName="takeProfit"
           (keyup.enter)="onChangeValue('stopLoss')">
         <div *ngIf="ratioForm.get('takeProfit').errors">
-          <div *ngIf="ratioForm.get('takeProfit').errors.pattern" class="error-numerico">Acepta numeros enteros o con decimales.</div>
+          <div *ngIf="ratioForm.get('takeProfit').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+            decimales.</div>
         </div>
       </div>
     </div>

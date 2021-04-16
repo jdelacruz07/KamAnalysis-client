@@ -2,38 +2,36 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiCryptoService } from '../api-crypto.service';
 import { interval, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes, query, stagger } from '@angular/animations';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.css'],
   animations: [
-    trigger('openClose', [
-      state('open', style({
+    trigger('outIn', [
+      state('in', style({
         opacity: 1,
         color: '#daf13e',
       })),
-      transition('* => open', [
-        animate('4s', keyframes([
+      transition('* => in', [
+        animate('2s', keyframes([
           style({ transform: 'translateX(-100%)', offset: 0 }),
           style({ color: "#daf13e", offset: 1 }),
           style({ transform: 'translateX(0%)', offset: 1 }),
         ]))
       ]),
     ]),
-    trigger('banner', [
-      state('active', style({
-        opacity: 1,
-        color: '#daf13e',
-      })),
-      transition('* => active', [
-        animate('4s', keyframes([
-          style({ transform: 'translateX(0%)', offset: 1 }),
-          style({ opacity: 1, offset: 1 }),
-        ]))
-      ]),
-    ])
+    trigger('imgAnimation', [
+      transition('void => *', [
+        query('img', style({ opacity: 0 })),
+        query('img', stagger('300ms', [
+          animate('2000ms', style({ opacity: 1 })),
+        ]), { optional: true }),
+      ])
+    ]),
   ]
 })
 export class AnalysisComponent implements OnInit, OnDestroy {
@@ -43,47 +41,55 @@ export class AnalysisComponent implements OnInit, OnDestroy {
   base: string;
   amount: string;
   currency: string;
-  valueOfCrypto: cryptoInterface;
 
-  isOpen = true;
-  isActive = true;
-  imgSize: string;
-  color: string;
+  outIn = 'in';
+  imgAnimation;
 
-  constructor(private apiCrypto: ApiCryptoService) {
+  asset: Asset[] = [];
+  assets: Asset[] = [
+    {
+      name: "Header",
+      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
+      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
+      srcImage: "../assets/img/USDMXN.png",
+      alt: "Image Header",
+    },
+    {
+      name: "MXN",
+      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
+      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
+      srcImage: "../assets/img/USDMXN.png",
+      alt: "Image MXN",
+    },
+    {
+      name: "MXN",
+      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
+      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
+      srcImage: "../assets/img/USDMXN.png",
+      alt: "Image MXN",
+    },
+    {
+      name: "MXN",
+      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
+      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
+      srcImage: "../assets/img/USDMXN.png",
+      alt: "Image MXN",
+    }
+  ]
+
+  constructor(private apiCrypto: ApiCryptoService, private router: Router) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
-    this.imgSize = "resize";
-    this.color = "color1";
   }
 
   ngOnInit(): void {
     this.endCrypto$ = this.crypto$.subscribe();
-  }
-
-  onChangeColor() {
-    if (this.color === "color1") {
-      this.color = "color2"
-    }
-    else {
-      this.color = "color1"
-    }
-  }
-
-  onChangeSize() {
-    if (this.imgSize === "size") {
-      this.imgSize = "resize"
-    } else {
-      this.imgSize = "size"
-    }
-  }
-
-  toggle() {
-    this.isOpen = !this.isOpen;
+    this.asset.push(this.assets[0]);
+    this.assets.splice(0, 1);
   }
 
   getCrypto() {
     let nameCrypto = "BTC-USD";
-    this.apiCrypto.getCrypto(nameCrypto).subscribe((crypto: dataCrypto) => {
+    this.apiCrypto.getCrypto(nameCrypto).subscribe((crypto: DataCrypto) => {
       this.base = crypto.data.base;
       this.currency = crypto.data.currency;
       this.amount = crypto.data.amount;
@@ -95,16 +101,23 @@ export class AnalysisComponent implements OnInit, OnDestroy {
     this.endCrypto$.unsubscribe();
   }
 
-
 }
 
-export interface dataCrypto {
-  data: cryptoInterface;
+export interface DataCrypto {
+  data: Crypto;
 }
 
-export interface cryptoInterface {
+export interface Crypto {
   base: string;
   currency: string;
   amount: string;
+}
+
+export interface Asset {
+  name: string;
+  strategy: string;
+  price: string;
+  srcImage: string;
+  alt: string;
 }
 

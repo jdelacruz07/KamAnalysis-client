@@ -8,6 +8,10 @@ h2 {
   color: cadetblue;
 }
 
+.container-img {
+  min-width: 140px;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +33,7 @@ h2 {
 
 .strategy-img {
   max-width: 100%;
+
 }
 
 @media (min-width: 480px)  { 
@@ -43,6 +48,7 @@ h2 {
   }
 
   .container {
+    display: flex;
     flex-wrap: nowrap;
     padding: 0;
   }
