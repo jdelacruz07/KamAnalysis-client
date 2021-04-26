@@ -1,31 +1,31 @@
-import { Component, Inject, OnInit, ɵɵgetInheritedFactory } from '@angular/core';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { Subject } from 'rxjs';
-import { StrategyService } from '../strategy.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
+import { IdeaService } from '../idea.service';
 
 @Component({
-  selector: 'app-strategy',
-  templateUrl: './strategy.component.html',
-  styleUrls: ['./strategy.component.css'],
+  selector: 'app-idea',
+  templateUrl: './idea.component.html',
+  styleUrls: ['./idea.component.css']
 })
-export class StrategyComponent implements OnInit {
+export class IdeaComponent implements OnInit {
   inputChange$ = new Subject;
   newIdea: any;
   ideaForUpdate: any;
-  ideas: Strategy[] = [];
-  strategies: Strategy[] = [];
-  conclusion: Strategy[] = [];
+  ideas: Idea[] = [];
+  strategies: Idea[] = [];
+  conclusion: Idea[] = [];
   ideaEdit: boolean = true;
   idEdit: number;
 
-  constructor(private strategyService: StrategyService, @Inject(DOCUMENT) private document: any, private auth: AuthService) { }
+  constructor(private ideaService: IdeaService, @Inject(DOCUMENT) private document: any, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.inputChange$.pipe(debounceTime(2000)).subscribe(x => {
-      let idea: Strategy = { id: undefined, idea: undefined, type: undefined };
+      let idea: Idea = { id: undefined, idea: undefined, type: undefined };
       let newIdea: any = x;
       idea.idea = newIdea;
       this.addIdea(idea), () => console.log("Error "), () => console.log("Terminado")
@@ -44,7 +44,7 @@ export class StrategyComponent implements OnInit {
   }
 
   addIdea(idea) {
-    this.strategyService.addStrategy(idea).subscribe((x: Strategy) => {
+    this.ideaService.addStrategy(idea).subscribe((x: Idea) => {
       this.newIdea = null;
       if (x != null) {
         this.ideas.push(x);
@@ -53,7 +53,7 @@ export class StrategyComponent implements OnInit {
   }
 
   getIdeas() {
-    this.strategyService.getIdeas().subscribe(resp => {
+    this.ideaService.getIdeas().subscribe(resp => {
       let allIdeas;
       allIdeas = resp.body;
       let totalIdeas = allIdeas.content;
@@ -76,12 +76,12 @@ export class StrategyComponent implements OnInit {
   }
 
   updateIdea(id, idea) {
-    let newIdea: Strategy = { id: undefined, idea: undefined, type: undefined };
+    let newIdea: Idea = { id: undefined, idea: undefined, type: undefined };
     newIdea.id = id;
     newIdea.idea = idea;
-    this.strategyService.updateidea(newIdea).subscribe((ideaUpdate) => {
+    this.ideaService.updateidea(newIdea).subscribe((ideaUpdate) => {
       this.ideaEdit = false;
-      this.ideas.forEach((x: Strategy) => {
+      this.ideas.forEach((x: Idea) => {
         if (x.id == ideaUpdate.id) {
           x.idea = ideaUpdate.idea
         }
@@ -89,9 +89,9 @@ export class StrategyComponent implements OnInit {
     })
   }
 
-  onDeleteIdea(idea: Strategy, i: number) {
+  onDeleteIdea(idea: Idea, i: number) {
     let index = i;
-    this.strategyService.deleteIdea(idea.id).subscribe(() => {
+    this.ideaService.deleteIdea(idea.id).subscribe(() => {
       this.ideas.splice(index, 1);
     });
   }
@@ -103,7 +103,7 @@ export class StrategyComponent implements OnInit {
       if (idea.type != "idea") {
         idea.type = "idea";
         console.log("La idea para actualizar", idea)
-        this.strategyService.updateidea(idea).subscribe();
+        this.ideaService.updateidea(idea).subscribe();
       }
     });
 
@@ -124,7 +124,7 @@ export class StrategyComponent implements OnInit {
       if (idea.type != "strategy") {
         idea.type = "strategy";
         console.log("La estrategia para actualizar", idea)
-        this.strategyService.updateidea(idea).subscribe();
+        this.ideaService.updateidea(idea).subscribe();
       }
     });
 
@@ -145,7 +145,7 @@ export class StrategyComponent implements OnInit {
       if (idea.type != "conclusion") {
         idea.type = "conclusion";
         console.log("La conclusion para actualizar", idea)
-        this.strategyService.updateidea(idea).subscribe();
+        this.ideaService.updateidea(idea).subscribe();
       }
     });
 
@@ -163,7 +163,7 @@ export class StrategyComponent implements OnInit {
 
 
 
-export interface Strategy {
+export interface Idea {
   id: string;
   idea: string;
   type: string;

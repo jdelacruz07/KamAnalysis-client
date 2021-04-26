@@ -4,6 +4,7 @@ import { interval, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { trigger, state, style, animate, transition, keyframes, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { StrategyService } from '../strategy.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ import { Router } from '@angular/router';
       ]),
     ]),
     trigger('imgAnimation', [
-      transition('void => *', [
+      transition('* => inImg', [
         query('img', style({ opacity: 0 })),
         query('img', stagger('300ms', [
           animate('2000ms', style({ opacity: 1 })),
@@ -43,48 +44,27 @@ export class AnalysisComponent implements OnInit, OnDestroy {
   currency: string;
 
   outIn = 'in';
-  imgAnimation;
+  imgAnimation = null;
 
-  asset: Asset[] = [];
-  assets: Asset[] = [
-    {
-      name: "Header",
-      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
-      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
-      srcImage: "../assets/img/USDMXN.png",
-      alt: "Image Header",
-    },
-    {
-      name: "MXN",
-      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
-      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
-      srcImage: "../assets/img/USDMXN.png",
-      alt: "Image MXN",
-    },
-    {
-      name: "MXN",
-      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
-      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
-      srcImage: "../assets/img/USDMXN.png",
-      alt: "Image MXN",
-    },
-    {
-      name: "MXN",
-      strategy: "Estrategia: posicionarse corto, es decir venta del USD y compra del MXN.",
-      price: "Precio de entrada en los 21, con objetivo de los 20 y limite de perdidas en los 22",
-      srcImage: "../assets/img/USDMXN.png",
-      alt: "Image MXN",
-    }
-  ]
+  asset: Strategy[] = [];
+  assets: Strategy[] = [];
 
-  constructor(private apiCrypto: ApiCryptoService, private router: Router) {
+  constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService, private router: Router) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
   }
 
   ngOnInit(): void {
     this.endCrypto$ = this.crypto$.subscribe();
-    this.asset.push(this.assets[0]);
-    this.assets.splice(0, 1);
+    this.getAllStrategies();
+  }
+
+  getAllStrategies() {
+    this.strategyService.getAllStrategies().subscribe((strategies) => {
+      this.assets = strategies.content;
+      this.asset.push(this.assets[this.assets.length - 1]);
+      this.assets.splice(this.assets.length - 1, 1);
+      this.imgAnimation = 'inImg';
+    })
   }
 
   getCrypto() {
@@ -113,10 +93,13 @@ export interface Crypto {
   amount: string;
 }
 
-export interface Asset {
-  name: string;
+export interface Strategy {
+  id: string;
+  asset: string;
   strategy: string;
-  price: string;
+  price: number;
+  stopLoss: number;
+  takeProfit: number;
   srcImage: string;
   alt: string;
 }

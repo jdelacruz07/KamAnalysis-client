@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService, Credentials } from '../auth.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
@@ -21,7 +21,6 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
       })),
       transition('* => stop', [
         animate('700ms ease-in', keyframes([
-          // style({ color: "yellow", offset: .0 }),
           style({ transform: 'translateX(-10px)', offset: 0 }),
           style({ transform: 'translateX(10px)', offset: .1 }),
           style({ transform: 'translateX(-10px)', offset: .2 }),
@@ -36,13 +35,6 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
           style({ color: "red", offset: 1 }),
         ]))
       ]),
-      // transition('* => continue', [
-      //   animate('300ms ease-out', keyframes([
-      //     style({ transform: 'translateX(0%)', offset: 0 }),
-      //     style({ color: "red", offset: 1 }),
-      //     style({ transform: 'translateX(-60px)', offset: 1 }),
-      //   ]))
-      // ]),
     ]),
 
   ]

@@ -1,4 +1,3 @@
-import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,10 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class PerformanceRiskComponent implements OnInit {
-  // stopLoss: number;
   performanceRisk: number;
-  // takeProfit: number;
-  // buySell: number;
   ratioForm: FormGroup;
 
   @ViewChild("stopLoss") stopLoss: ElementRef;
@@ -52,7 +48,6 @@ export class PerformanceRiskComponent implements OnInit {
     } else {
       this.performanceRisk = null;
     }
-
   }
 
 }

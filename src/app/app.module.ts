@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TimerComponent } from './timer/timer.component';
 import { PerformanceRiskComponent } from './performance-risk/performance-risk.component';
-import { StrategyComponent } from './strategy/strategy.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
@@ -25,17 +24,22 @@ import { environment } from '../environments/environment';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { XhrInterceptorService } from './xhr-interceptor.service';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PresentationComponent } from './presentation/presentation.component';
+import { IdeaComponent } from './idea/idea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PerformanceRiskComponent,
     TimerComponent,
-    StrategyComponent,
     AnalysisComponent,
     HeaderComponent,
     StatisticsComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent,
+    PresentationComponent,
+    IdeaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,49 +1,33 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Strategy } from './strategy/strategy.component';
+import { Strategy } from './analysis/analysis.component';
+import { Pageable } from './statistics/statistics.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StrategyService {
-  strategyUrl = environment.url + "strategy";
-  size: string = "100";
+
+  url = environment.url + "strategy";
 
   constructor(private http: HttpClient) { }
 
   addStrategy(strategy: Strategy) {
-    const httpOptions = this.configHeader();
-    return this.http.post<Strategy>(this.strategyUrl, strategy, httpOptions)
-      .pipe(catchError(async (error) => console.log("Error en el add", error)));
+    return this.http.post<Strategy>(this.url, strategy);
   }
 
-  getIdeas() {
-    return this.http.get(this.strategyUrl + `?size=${this.size}`, { observe: 'response' });
+  getAllStrategies() {
+    let urlWithParams = `${this.url}?page=0&size=4`;
+    return this.http.get<Pageable>(urlWithParams);
   }
 
-  updateidea(idea: Strategy) {
-    const httpOptions = this.configHeader();
-    return this.http.put<Strategy>(this.strategyUrl, idea, httpOptions);
+  updateStrategy(strategy: Strategy) {
+    return this.http.put<Strategy>(this.url, strategy);
   }
 
-  deleteIdea(id) {
-    const url = `${this.strategyUrl}/${id}`;
-    const httpOptions = this.configHeader();
-    return this.http.delete(url, httpOptions)
-      .pipe(catchError(async (error) => console.log("Error en el delete", error)));
+  deleteStrategy(id) {
+    return this.http.delete<Strategy>("${this.url}/${id}");
   }
 
-  configHeader() {
-    const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': CSRF_TOKEN
-      })
-    }
-    return httpOptions;
-  }
 }
