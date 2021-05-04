@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { IdeaComponent } from './idea/idea.component';
+import { FormStrategyComponent } from './form-strategy/form-strategy.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { IdeaComponent } from './idea/idea.component';
     LoginComponent,
     PageNotFoundComponent,
     PresentationComponent,
-    IdeaComponent
+    IdeaComponent,
+    FormStrategyComponent
   ],
   imports: [
     BrowserModule,

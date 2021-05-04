@@ -1,35 +1,34 @@
-<div class="container">
+<div *ngIf="newStrategy === false" class="container">
   <h1>Rendimiento/Riesgo</h1>
   <form [formGroup]="ratioForm" (ngSubmit)="riskPerformance()">
-    <div class="fields">
-      <div class="field">
-        <label for="stopLoss">Limite de perdida:</label>
-        <input #stopLoss placeholder="100.00" maxlength="10" type="text" formControlName="stopLoss"
-          (keyup.enter)="onChangeValue('buySell')">
-        <div *ngIf="ratioForm.get('stopLoss').errors">
-          <div *ngIf="ratioForm.get('stopLoss').errors.pattern" class="error-numerico">Acepta numeros enteros o con
-            decimales.</div>
-        </div>
-      </div>
-      <div class="field">
-        <label for="buySell">Compra/Venta: </label>
-        <input #buySell placeholder="150.00" maxlength="10" type="text" formControlName="buySell"
-          (keyup.enter)="onChangeValue('profit')">
-        <div *ngIf="ratioForm.get('buySell').errors">
-          <div *ngIf="ratioForm.get('buySell').errors.pattern" class="error-numerico">Acepta numeros enteros o con
-            decimales.</div>
-        </div>
-      </div>
-      <div class="field">
-        <label for="takeProfit">Toma de utilidades:</label>
-        <input #takeProfit placeholder="200.00" maxlength="10" type="text" formControlName="takeProfit"
-          (keyup.enter)="onChangeValue('stopLoss')">
-        <div *ngIf="ratioForm.get('takeProfit').errors">
-          <div *ngIf="ratioForm.get('takeProfit').errors.pattern" class="error-numerico">Acepta numeros enteros o con
-            decimales.</div>
-        </div>
+    <div class="field">
+      <label for="stopLoss">Limite de perdida:</label>
+      <input #stopLoss placeholder="100.00" maxlength="10" type="text" formControlName="stopLoss"
+        (keyup.enter)="onChangeValue('buySell')">
+      <div *ngIf="ratioForm.get('stopLoss').errors">
+        <div *ngIf="ratioForm.get('stopLoss').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+          decimales.</div>
       </div>
     </div>
+    <div class="field">
+      <label for="buySell">Precio de entrada: </label>
+      <input #buySell placeholder="150.00" maxlength="10" type="text" formControlName="buySell"
+        (keyup.enter)="onChangeValue('profit')">
+      <div *ngIf="ratioForm.get('buySell').errors">
+        <div *ngIf="ratioForm.get('buySell').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+          decimales.</div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="takeProfit">Toma de beneficios:</label>
+      <input #takeProfit placeholder="200.00" maxlength="10" type="text" formControlName="takeProfit"
+        (keyup.enter)="onChangeValue('stopLoss')">
+      <div *ngIf="ratioForm.get('takeProfit').errors">
+        <div *ngIf="ratioForm.get('takeProfit').errors.pattern" class="error-numerico">Acepta numeros enteros o con
+          decimales.</div>
+      </div>
+    </div>
+
     <div class="calculate">
       <button class="btn btn-success" type="submit" [disabled]="!ratioForm.valid">Calcular</button>
       <div class="result-items">
@@ -39,5 +38,9 @@
       </div>
     </div>
   </form>
-
+  <div class="newStrategy">
+    <button class="btn btn-primary" (click)="onFormStrategy()">Generar nueva estrategia</button>
+  </div>
 </div>
+
+<app-form-strategy [totalRisk]="risk" *ngIf="newStrategy" (changeForm)="changeForm($event)"></app-form-strategy>

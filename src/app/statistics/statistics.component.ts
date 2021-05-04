@@ -12,48 +12,48 @@ import { GapService } from '../gap.service';
   animations: [
     trigger('gapAnimation', [
       state('add', style({
-        opacity: 1,
-        color: '#daf13e',
+        color: '#007bff',
       })),
       state('delete', style({
         opacity: 1,
-        color: '#daf13e',
+        color: '#007bff',
       })),
       transition('void => add', [
         animate('700ms ease-in', keyframes([
-          style({ transform: 'translateX(-60px)', offset: 0 }),
-          style({ color: "blue", offset: 0 }),
-          style({ color: "#daf13e", offset: 1 }),
-          style({ transform: 'translateX(0%)', offset: 1 }),
+          style({ transform: 'translateX(-60px)', opacity: '0', offset: 0 }),
+          style({ color: "#daf13e", offset: 0 }),
+          style({ color: "#007bff", offset: 1 }),
+          style({ transform: 'translateX(0%)', opacity: '1', offset: 1 }),
         ]))
       ]),
       transition('delete => void', [
         animate('300ms ease-out', keyframes([
-          style({ transform: 'translateX(0%)', offset: 0 }),
+          style({ transform: 'translateX(0%)', opacity: '1', offset: 0 }),
           style({ color: "red", offset: 1 }),
-          style({ transform: 'translateX(-60px)', offset: 1 }),
+          style({ transform: 'translateX(-60px)', opacity: '0', offset: 1 }),
         ]))
       ]),
     ]),
-
   ]
+
 })
 export class StatisticsComponent implements OnInit {
 
-  checkoutForm: FormGroup;
+  gapForm: FormGroup;
   gapHistory: any[];
   percentage: number = 0;
   gapError = null;
   menuDisplay = [];
-  page = 0;
+  page: number = 0;
 
   animationList = null;
+
   isAuthenticate = false;
 
   constructor(private formBuilder: FormBuilder, private gapService: GapService, private auth: AuthService) {
     const dateLength = 10;
     let todayDate = new Date().toISOString().substring(0, dateLength);
-    this.checkoutForm = this.formBuilder.group({
+    this.gapForm = this.formBuilder.group({
       gapClose: ['No', Validators.required],
       dateSelected: [todayDate, Validators.required]
     });
@@ -83,19 +83,19 @@ export class StatisticsComponent implements OnInit {
   }
 
   deleteGap(id, index) {
-    this.gapError = null;
     this.animationList = "delete";
+    this.gapError = null;
     this.gapService.deleteGap(id).subscribe(() => {
       this.gapHistory.splice(index, 1);
     });
   }
 
   addGap() {
-    this.gapError = null;
+    let gap: Gap = this.gapForm.value;
     this.animationList = "add";
-    let gap: Gap = this.checkoutForm.value;
+    this.gapError = null;
     this.gapService.addGap(gap).subscribe(newGap => {
-      this.checkoutForm.reset();
+      this.gapForm.reset();
       this.updatePercentage();
       this.gapHistory.unshift(newGap);
     }, (error: Response) => {
@@ -107,7 +107,7 @@ export class StatisticsComponent implements OnInit {
           this.gapError = "Fecha duplicada"
         }
       }
-      this.checkoutForm.reset();
+      this.gapForm.reset();
     })
   }
 

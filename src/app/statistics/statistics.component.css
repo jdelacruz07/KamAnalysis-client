@@ -1,5 +1,4 @@
 p {
-    /* justify-content: center; */
     text-align: center;
 }
 
@@ -11,6 +10,20 @@ label {
 
 table {
     margin: auto;
+    border-collapse: separate;
+    border-spacing: 25px 5px;
+}
+
+form {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: .1rem solid #dadada ;
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
 }
 
 .gap-error {
@@ -22,9 +35,11 @@ table {
     color: #007bff;
 }
 
-.form {
+.form-fields {
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    width: 250px;
+    justify-content: left;
     flex-wrap: wrap;
     align-items: baseline;
 }
@@ -49,6 +64,7 @@ table {
 .date {
     width: 130px;
 }
+
 .percentage {
     display: flex;
     flex-wrap: wrap;
@@ -66,11 +82,6 @@ table {
     flex: 0 1 auto;
     margin-right: 5px;
     color: #28a745;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 25px 5px;
 }
 
 .header-history {
@@ -92,11 +103,11 @@ table {
 }
 
 @media (min-width: 480px) {
-    .form {
-        justify-content: space-evenly;
+    .form-fields {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: nowrap;
     }
-    label {
-        width: auto;
-    }
+    
 }
 

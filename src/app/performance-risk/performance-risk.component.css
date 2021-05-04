@@ -5,7 +5,7 @@ h1 {
 
 label {
     color: #daf13e;
-    width: 125px;
+    width: 130px;
     text-align: right;
 }
 
@@ -18,17 +18,20 @@ input {
     width: 100px;
 }
 
-.error-numerico {
-    color: brown;
+form {
+    border-bottom: .1rem solid #dadada;
+    padding-bottom: 15px;
 }
-.fields {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 15px;
+
+.error-numerico {
+    color: rgb(235, 72, 72);
+    margin-top: 5px;
 }
 
 .field {
-    flex: 1 1 auto;
+    margin: 0 auto;
+    width: 230px;
+    margin-bottom: 5px;
 }
 
 .calculate {
@@ -57,3 +60,9 @@ input {
     border-radius: 5px;
     margin: 0 15px 0 15px;
 }
+
+.newStrategy {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+ }

@@ -13,13 +13,14 @@ h1 {
     text-align: center;
     color: #daf13e;
 }
+
 h2 {
     text-align: center;  
     color: green;
 }
 
 label {
-    /* margin-right: 15px;  */
+    display: block;
     color: green;
 }
 
@@ -29,8 +30,9 @@ input {
 }
 
 .error {
+    margin-top: 5px;
     text-align: center;
-    color: brown;
+    color: rgb(235, 82, 82);
 }
 
 .restart {
@@ -50,21 +52,21 @@ input {
 }
 
 .timer {
-    display: flex;
+    width: 120px;
+    margin: 0 auto;
     font-size: 20px;
-    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.finishTimer {
-    display: flex;
-    justify-content: center;
-    margin: 15px;
-    text-align: center;
+.downContainer {
+    /* display: flex;
+    justify-content: center; */
+    margin: 15px; 
     font-size: 30px;
 }
 
 .countDown {
+    margin: 0 auto;
     color: green;
     background-color: transparent;
     border-radius: 50%;
@@ -72,6 +74,7 @@ input {
     height: 120px;
     line-height: 120px;
     border: 1px solid green;
+    text-align: center;
 }
 
 .spacer {

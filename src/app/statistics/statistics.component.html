@@ -7,8 +7,8 @@
     </section>
 
     <section>
-        <form [formGroup]="checkoutForm" (ngSubmit)="addGap()">
-            <div class="form">
+        <form [formGroup]="gapForm" (ngSubmit)="addGap()">
+            <div class="form-fields">
                 <div>
                     <label for="gap">Se cierra el hueco:</label>
                     <input id="gap" type="radio" value="Si" formControlName="gapClose">Si
@@ -18,42 +18,46 @@
                     <label for="date">Fecha: </label>
                     <input class="date" id="date" type="date" formControlName="dateSelected">
                 </div>
-                <div>
-                    <button class="btn btn-success" type="submit" [disabled]="!checkoutForm.valid"
-                        [disabled]="!isAuthenticated()">Guardar</button>
-                    <!-- <button class="btn btn-success" type="submit" [disabled]="!checkoutForm.valid">Guardar</button> -->
-                </div>
             </div>
+            <div class="button-container">
+                <button class="btn btn-success" type="submit" [disabled]="!gapForm.valid"
+                    [disabled]="!isAuthenticated()">Guardar</button>
+            </div>
+            <div class="gap-error" *ngIf="gapError">{{gapError}}</div>
         </form>
-        <div class="gap-error" *ngIf="gapError">{{gapError}}</div>
     </section>
-    <!-- <p>Form Status: {{checkoutForm.valid}}</p> -->
 
-    <div class="header-history">Historico</div>
-    <table>
-        <th>Fecha</th>
-        <th>Cierre</th>
-        <tr [@gapAnimation]="animationList" *ngFor="let gap of gapHistory; let i = index">
-            <td class="data-gap">
-                {{gap.dateSelected | date: 'd MMM, y'}}
-            </td>
-            <td class="data-gap">
-                {{gap.gapClose}}
-            </td>
-            <td>
-                <button [disabled]="!isAuthenticated()" class="btn btn-secondary"
-                    (click)="deleteGap(gap.id, i)">Eliminar</button>
-            </td>
-        </tr>
-    </table>
-    <div class="menu">
-        <div *ngFor="let menu of menuDisplay; let i = index">
-            <div *ngIf="page == i  ; else elementMenu">
-                <div (click)="onChangePage(i)" class="element-menu"> <u> {{menu}} </u> </div>
+    <section>
+        <div class="header-history">Historico</div>
+        <table>
+            <th>Fecha</th>
+            <th>Cierre</th>
+            <tr class="data-gap" [@gapAnimation]="animationList" *ngFor="let gap of gapHistory; let i = index">
+                <td>
+                    {{gap.dateSelected | date: 'd MMM, y'}}
+                </td>
+                <td>
+                    {{gap.gapClose}}
+                </td>
+                <td>
+                    <button [disabled]="!isAuthenticated()" class="btn btn-secondary"
+                        (click)="deleteGap(gap.id, i)">Eliminar</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+
+        <div class="menu">
+            <div *ngFor="let menu of menuDisplay; let i = index">
+                <div *ngIf="page == i  ; else elementMenu">
+                    <div (click)="onChangePage(i)" class="element-menu"> <u> {{menu}} </u> </div>
+                </div>
+                <ng-template #elementMenu>
+                    <div (click)="onChangePage(i)" class="element-menu"> {{menu}} </div>
+                </ng-template>
             </div>
-            <ng-template #elementMenu>
-                <div (click)="onChangePage(i)" class="element-menu"> {{menu}} </div>
-            </ng-template>
         </div>
-    </div>
+    </section>
 </div>

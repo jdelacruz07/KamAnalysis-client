@@ -14,12 +14,11 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
         opacity: 1,
         color: '#daf13e',
       })),
-      state('stop', style({
+      state('error', style({
         opacity: 1,
-        // color: '#daf13e',
         color: 'red',
       })),
-      transition('* => stop', [
+      transition('* => error', [
         animate('700ms ease-in', keyframes([
           style({ transform: 'translateX(-10px)', offset: 0 }),
           style({ transform: 'translateX(10px)', offset: .1 }),
@@ -41,9 +40,9 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 })
 export class LoginComponent implements OnInit {
 
-  password;
-  user;
-  continue = true;
+  password: string;
+  user: string;
+  sesionError = "continue";
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
@@ -56,24 +55,22 @@ export class LoginComponent implements OnInit {
       console.log("Esta autorizado en login ", this.auth.authenticated())
       this.router.navigate(['']);
     }
-
   }
 
   onSubmit() {
-    this.continue = true;
+    this.sesionError = "continue";
     let credentials: Credentials = { user: this.user, password: this.password }
     this.auth.login(credentials).subscribe(() => {
       this.auth.isAuthenticate = true;
       this.router.navigate([''])
-      this.continue = true;
     }, error => {
-      this.continue = false;
+      this.sesionError = "error";
       console.log("El error es ", error)
     });
-
   }
 
   logout() {
     this.auth.logout();
   }
+
 }

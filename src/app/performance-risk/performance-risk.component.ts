@@ -10,10 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PerformanceRiskComponent implements OnInit {
   performanceRisk: number;
   ratioForm: FormGroup;
+  risk = { stop: 0, buy: 0, profit: 0, risk: 0 }
 
   @ViewChild("stopLoss") stopLoss: ElementRef;
   @ViewChild("buySell") buySell: ElementRef;
   @ViewChild("takeProfit") takeProfit: ElementRef;
+
+  newStrategy = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.ratioForm = formBuilder.group({
@@ -24,6 +27,15 @@ export class PerformanceRiskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  changeForm() {
+    this.newStrategy = false;
+  }
+
+  onFormStrategy() {
+    console.log(this.newStrategy)
+    this.newStrategy = true;
   }
 
   onChangeValue(nextInput) {
@@ -45,6 +57,7 @@ export class PerformanceRiskComponent implements OnInit {
     let takeProfit = this.ratioForm.value.takeProfit;
     if (takeProfit >= 0 && buySell >= 0 && stopLoss >= 0) {
       this.performanceRisk = (takeProfit - buySell) / (buySell - stopLoss)
+      this.risk = { stop: stopLoss, buy: buySell, profit: takeProfit, risk: this.performanceRisk }
     } else {
       this.performanceRisk = null;
     }

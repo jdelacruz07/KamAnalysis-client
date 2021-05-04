@@ -46,7 +46,7 @@ export class AnalysisComponent implements OnInit, OnDestroy {
   outIn = 'in';
   imgAnimation = null;
 
-  asset: Strategy[] = [];
+  principal: Strategy;
   assets: Strategy[] = [];
 
   constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService, private router: Router) {
@@ -60,10 +60,10 @@ export class AnalysisComponent implements OnInit, OnDestroy {
 
   getAllStrategies() {
     this.strategyService.getAllStrategies().subscribe((strategies) => {
-      this.assets = strategies.content;
-      this.asset.push(this.assets[this.assets.length - 1]);
-      this.assets.splice(this.assets.length - 1, 1);
       this.imgAnimation = 'inImg';
+      console.log("Estrategias ", strategies.content)
+      this.principal = strategies.content[0];
+      this.assets = strategies.content;
     })
   }
 
@@ -97,10 +97,10 @@ export interface Strategy {
   id: string;
   asset: string;
   strategy: string;
-  price: number;
+  buySell: number;
   stopLoss: number;
   takeProfit: number;
-  srcImage: string;
-  alt: string;
+  urlImg: string;
+  altImg: string;
 }
 
