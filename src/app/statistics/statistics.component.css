@@ -15,9 +15,9 @@ table {
 }
 
 form {
-    margin-top: 15px;
     padding-bottom: 15px;
     border-bottom: .1rem solid #dadada ;
+    margin-top: 15px;
 
 }
 
@@ -36,11 +36,11 @@ form {
 }
 
 .form-fields {
+    width: 250px;
     margin: 0 auto;
     display: flex;
-    width: 250px;
-    justify-content: left;
     flex-wrap: wrap;
+    justify-content: left; 
     align-items: baseline;
 }
 
@@ -69,25 +69,27 @@ form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     font-size: large;
     margin: 10px;
+    /* border-bottom: .1rem solid #dadada; */
 }
 
 .element-header {
     flex: 0 1 auto;
-    margin-right: 5px;
+    padding: 5px;
 }
 
 .element-percentage {
     flex: 0 1 auto;
-    margin-right: 5px;
     color: #28a745;
+    margin-right: 5px;
 }
 
 .header-history {
-    margin: 20px;
     text-align: center;
     font-size: 20px;
+    margin: 20px;
 }
 
 .menu {
@@ -97,12 +99,13 @@ form {
 
 .element-menu {
     flex: 0 1 auto;
-    margin-right: 5px;
     color: chartreuse;
+    margin-right: 5px;
     cursor: pointer;
 }
 
 @media (min-width: 480px) {
+    
     .form-fields {
         width: 100%;
         justify-content: center;

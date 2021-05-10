@@ -1,13 +1,9 @@
 <div>
-  <div class="header">
-    <div></div>
-    <h1>Estrategias y conclusiones</h1>
-    <button class="btn btn-primary" (click)="logout()">Logout</button>
-  </div>
+  <h1>Estrategias y conclusiones</h1>
 
   <section>
     <div class="header-idea">
-      <label for="idea" class="idea-label">Idea de trading:</label>
+      <label for="idea" class="idea-label">Introducir idea:</label>
       <input placeholder="Idea" id="newIdea" class="idea-input" type="text" name="newIdea" [(ngModel)]="newIdea"
         (ngModelChange)="inputChange($event)">
     </div>
@@ -24,8 +20,7 @@
 
   <section class="strategy-list">
     <div class="example-container">
-      <h2>Estrategias</h2>
-
+      <h3>Estrategias</h3>
       <div cdkDropList #strategiesList="cdkDropList" [cdkDropListData]="strategies"
         [cdkDropListConnectedTo]="[ideasList, conclusionList]" class="box-list2"
         (cdkDropListDropped)="dropStrategies($event)">
@@ -34,8 +29,7 @@
     </div>
 
     <div class="example-container">
-      <h2>Conclusiones</h2>
-
+      <h3>Conclusiones</h3>
       <div cdkDropList #conclusionList="cdkDropList" [cdkDropListData]="conclusion"
         [cdkDropListConnectedTo]="[ideasList, strategiesList]" class="box-list2"
         (cdkDropListDropped)="dropConclusion($event)">
@@ -49,27 +43,30 @@
       <ul>
         <li *ngFor="let item of ideas; let i = index">
           <div class="ideas">
-
-            <div class="idea" *ngIf="ideaEdit && (idEdit == i) ; then showEdit else showIdea"></div>
+            <div *ngIf="ideaEdit && (idEdit == i) ; then showEdit else showIdea"></div>
             <ng-template #showIdea>
-              {{i+1}}) {{item.idea}}
+              <div class="wrap-idea">
+                <span class="idea-number">{{i+1}})</span> {{item.idea}}
+              </div>
             </ng-template>
             <ng-template #showEdit>
-              <input id="newIdea" class="idea-trading-input" type="text" name="newIdea" value="{{item.idea}}"
+              <input id="newIdea" class="idea-update" type="text" name="newIdea" value="{{item.idea}}"
                 (keyup.enter)="updateIdea(item.id, $event.target.value)">
             </ng-template>
-
-            <div class="spacer"></div>
-            <div class="btn-edit btn" (click)="(ideaEdit = true) && idEdit = i">edit</div>
-            <div name="delete" (click)="onDeleteIdea(item, i)"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16"
-                class="bi bi-x-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                <path fill-rule="evenodd"
-                  d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
-                <path fill-rule="evenodd"
-                  d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
-              </svg></div>
+            <div class="wrap-idea">
+              <div class="btn-edit btn" (click)="(ideaEdit = true) && idEdit = i">Edit</div>
+              <div class="idea-delete" name="delete" (click)="onDeleteIdea(item, i)">
+                <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-x-square" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path fill-rule="evenodd"
+                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                  <path fill-rule="evenodd"
+                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                </svg>
+              </div>
+            </div>
           </div>
         </li>
       </ul>

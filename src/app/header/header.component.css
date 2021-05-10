@@ -12,16 +12,16 @@
 }
 
 .container .mat-drawer .mat-button {
-    display: block;
     width: 100%;
+    display: block;
     text-align: left;
 }
 
 .toolbar{
-    background-color: whitesmoke;
-    color: #e01e47;
     display: flex;
     justify-content: space-between;
+    background-color: whitesmoke;
+    color: #e01e47;
 }
 
 .mat-button {

@@ -21,9 +21,9 @@ input {
 button {
     width: 50%;
     margin: auto;
-    margin-top: 15px;
     display: flex;
     justify-content: center;    
+    margin-top: 15px;
     
 }
 

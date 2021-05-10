@@ -3,7 +3,7 @@
 </section>
 
 <div [@imgAnimation]="imgAnimation">
-    <section *ngIf="principal" class="strategy-head">
+    <section *ngIf="principal" class="strategy-head" (click)="getDetails(principal)">
         <div class="container-img">
             <img class="img-principal" [src]="principal.urlImg" [alt]="principal.altImg">
         </div>
@@ -15,7 +15,7 @@
     </section>
     <section class="container">
         <div *ngFor="let item of assets; let i = index">
-            <div class="strategy" *ngIf="i > 0 ">
+            <div class="strategy" *ngIf="i > 0 " (click)="getDetails(item)">
                 <img class="img-strategy" [src]="item.urlImg" [alt]="item.altImg">
                 <div class="strategy-item">
                     <p>{{item.asset}} </p>
@@ -26,3 +26,8 @@
         </div>
     </section>
 </div>
+
+<section *ngIf="details">
+    <h2>El {{details.asset}}</h2>
+    <p>{{details.strategy}}</p>
+</section>

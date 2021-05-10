@@ -1,38 +1,69 @@
 .container {
+    max-width: 90%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/img/bull_02.jpg'); 
+    /* background-image: url(https://master.d2ggfysibfn5i5.amplifyapp.com/assets/images/reloj.jpeg);  */
+    background-size: cover;
+    /* background-size: 100% 100%; */
     margin-top: 15px;
-    /* max-width: 400px; */
-    padding: 25px;
-    background-image: url(https://kamanalysys.s3.eu-central-1.amazonaws.com/assets/images/reloj.jpeg); 
-/*    
-    background-image: url(https://master.d2ggfysibfn5i5.amplifyapp.com/assets/images/reloj.jpeg); 
-*/
-    background-size: 100% 100%;
 }
 
 h1 {
-    text-align: center;
     color: #daf13e;
+    background-color: darkblue;
+    opacity: .7;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 h2 {
     text-align: center;  
-    color: green;
+    color: darkblue;
+    background-color: #fff;
+    opacity: .7;
+    border-radius: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
 }
 
 label {
-    display: block;
-    color: green;
+    color:  darkblue;
+    opacity: .9;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 input {
-    border-radius: 10px;
+    max-width: 120px;
     text-align: center;
+    color: darkblue;
+    opacity: .9;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid darkblue;
+    margin-left: 5px;
+}
+
+input::placeholder {
+    color: darkblue;
+}
+
+.wrap-fields {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 }
 
 .error {
-    margin-top: 5px;
     text-align: center;
     color: rgb(235, 82, 82);
+    margin-top: 5px;
 }
 
 .restart {
@@ -40,43 +71,21 @@ input {
     justify-content: center;
 }
 
-.back {
-    background-color: honeydew;
-}
-
-.time {
-    background-color: transparent;
-    border: 1px solid green;
-    max-width: 120px;
-    color: #daf13e;
-}
-
-.timer {
-    width: 120px;
-    margin: 0 auto;
-    font-size: 20px;
-    justify-content: space-evenly;
-}
-
 .downContainer {
-    /* display: flex;
-    justify-content: center; */
+    display: flex;
+    justify-content: center;
     margin: 15px; 
-    font-size: 30px;
 }
 
 .countDown {
-    margin: 0 auto;
-    color: green;
-    background-color: transparent;
-    border-radius: 50%;
     width: 120px;
     height: 120px;
     line-height: 120px;
-    border: 1px solid green;
     text-align: center;
-}
-
-.spacer {
-    display: 1 1 auto;
+    font-size: 30px;
+    color: darkblue;
+    background-color: #fff;
+    opacity: .7;
+    border: 1px solid darkblue;
+    border-radius: 50%;
 }

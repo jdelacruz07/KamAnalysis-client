@@ -48,6 +48,7 @@ export class AnalysisComponent implements OnInit, OnDestroy {
 
   principal: Strategy;
   assets: Strategy[] = [];
+  details: Strategy;
 
   constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService, private router: Router) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
@@ -56,6 +57,11 @@ export class AnalysisComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.endCrypto$ = this.crypto$.subscribe();
     this.getAllStrategies();
+  }
+
+  getDetails(item: Strategy) {
+    console.log("Esto son los detalles ", item);
+    this.details = item;
   }
 
   getAllStrategies() {

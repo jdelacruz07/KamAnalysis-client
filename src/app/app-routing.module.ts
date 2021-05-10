@@ -16,13 +16,13 @@ const routes: Routes = [
   { path: 'analysis', component: AnalysisComponent },
   { path: 'timer', component: TimerComponent },
   { path: 'rendimiento-riesgo', component: PerformanceRiskComponent },
-  { path: 'ideas', component: IdeaComponent, canActivate: [AuthGuard] },
+  { path: 'ideas', component: IdeaComponent },
+  // { path: 'ideas', component: IdeaComponent, canActivate: [AuthGuard] },
   { path: 'estadisticas', component: StatisticsComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent },
-
-
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true }),],
   exports: [RouterModule]

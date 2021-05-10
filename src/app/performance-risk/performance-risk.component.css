@@ -4,23 +4,23 @@ h1 {
 }
 
 label {
-    color: #daf13e;
     width: 130px;
+    color: #daf13e;
     text-align: right;
 }
 
 input {
-    border: 0;
-    background-color: transparent;
-    color: #45a12e;
-    border-bottom: 1px solid green;
-    text-align: center;
     width: 100px;
+    color: #45a12e;
+    background-color: transparent;
+    text-align: center;
+    border: 0;
+    border-bottom: 1px solid green;
 }
 
 form {
-    border-bottom: .1rem solid #dadada;
     padding-bottom: 15px;
+    border-bottom: .1rem solid #dadada;
 }
 
 .error-numerico {
@@ -28,10 +28,14 @@ form {
     margin-top: 5px;
 }
 
+.fields {
+    margin-bottom: 15px;
+}
+
 .field {
-    margin: 0 auto;
-    width: 230px;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px; 
 }
 
 .calculate {
@@ -40,29 +44,32 @@ form {
 }
 
 .result-items {
-    color: #daf13e;
     display: flex;
+    color: #daf13e;
     align-items: center ;
 }
 
+.result-item {
+    margin: 0;
+}
+
 .result {
-    align-content: center;
     width: 100px;
-    height: 47px;
+    height: 47px; 
     line-height: 47px;
-    font-size: 30px;
-    font-weight: 800;
-    text-align: center;
     color: rgb(87, 93, 173);
+    text-align: center;
+    font-size: 30px; 
+    font-weight: 800;
     border-bottom: 1px solid rgb(87, 93, 173);
     border-right: 1px solid rgb(87, 93, 173);
-    box-shadow: 5px 5px 15px rgb(87, 93, 173);
     border-radius: 5px;
-    margin: 0 15px 0 15px;
+    box-shadow: 5px 5px 15px rgb(87, 93, 173);
+    margin: 0 15px;
 }
 
 .newStrategy {
-    margin-top: 15px;
     display: flex;
     justify-content: center;
+    margin-top: 15px;
  }

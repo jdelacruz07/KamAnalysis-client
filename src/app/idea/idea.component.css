@@ -1,20 +1,20 @@
 h1 {
-    text-align: center;
-    color: #daf13e;
-    margin-top: 15px;
+  text-align: center;
+  color: #daf13e;
+  margin: 15px;
 }
 
 input {
   /* width: 75%; */
-    border: 0;
-    background-color: transparent;
-    color: #45a12e;
-    border-bottom: 1px solid #daf13e;
-    text-align: left;
+  text-align: left;
+  color: #45a12e;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid green;
 }
 
 svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 hr {
@@ -28,133 +28,135 @@ hr {
 
 .ideas-list {
   text-align: center;
-  color:#daf13e;
-
+  color:#daf13e
 }
 
 .bi {
   color: green;
 }
 
-.header {
-    display: flex;
-    color: #daf13e;
-    margin-bottom: 15px;
-}
-
 .header-idea {
+  /* max-width: 90%;
+  margin: 0 auto; */
   display: flex;
-  color: #daf13e;
-  margin-bottom: 15px;
+  justify-content: center;
   flex-wrap: nowrap;
-  text-align: center;
-}
-
-::-webkit-input-placeholder {
-  text-align: center;
+  margin-bottom: 15px;
 }
 
 .idea-label {
-   text-align: right;
-   margin: 0 15px 0 0;
-   flex: 0 1 25%;
-
+  flex: 0 1 auto;
+  text-align: right;
+  color: #daf13e;;
+  margin: 0 5px 0 0;
 }
 
 .idea-input {
-    flex: 0 1 50%;
+  flex: 0 1 50%;
+  text-align: center;
 }
   
 .ideas {
   display: flex;
-  color:green;
-  margin-bottom: 1px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   align-items: center;
+  color: #daf13e;
+  margin-bottom: 1px;
 }
 
-.idea {
-  flex: 1 1 auto;
+.idea-number {
+  color: green;
+  margin-right: 5px;
+  /* flex: 1 1 auto; */
 }
 
-.idea-trading-input {
+.idea-update {
   flex: 1 1 400px;
+  color: #daf13e;
+}
+
+.idea-delete {
+  cursor: pointer;
+}
+
+.wrap-idea {
+  display: flex;
 }
 
 .btn-edit {
+  font-size: 14px;
+  color: #daf13e;
   background-color: transparent;
-  margin-right: 15px;
-  color: green;
   border: 1px solid green ;
+  margin: 0 10px 0 10px;
 }
 
-
 .strategy-list {
-    display: flex;
-    text-align: center;
-    color: #daf13e;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  color: #daf13e;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .example-container {
-    width: 400px;
-    max-width: 100%;
-    margin: 0 0px 25px 0px;
-    display: inline-block;
-    vertical-align: top;
-  }
+  width: 400px;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0px 25px 0px;
+}
   
 .box-list {
   max-width: 400px;
-  border: solid 1px green;
-  /*min-height: 40px;*/
+  margin: 0 auto;
+  display: block;
   background: white;
+  border: solid 1px green;
   border-radius: 4px;
   overflow: hidden;
-  display: block;
-  margin: 0 auto;
   margin-bottom: 15px;
 }
 
 .box-list2 {
-  border: solid 1px green;
   min-height: 60px;
+  display: block;
   background: whitesmoke;
   border-radius: 4px;
+  border: solid 1px green;
   overflow: hidden;
-  display: block;
 }
   
 .box-item {
-  padding: 10px 10px;
-  border-bottom: solid 1px green;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
-  cursor: move;
   color:green;
-  background:whitesmoke;
   font-size: 14px;
+  background:whitesmoke;
+  padding: 10px 10px;
+  border-bottom: solid 1px green;
+  cursor: move;
 }
 
 .box-item2 {
-  padding: 20px 10px;
-  border-bottom: solid 1px green;
-  color: rgba(0, 0, 0, 0.87);
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
   color:green;
   font-size: 14px;
+  padding: 20px 10px;
+  border-bottom: solid 1px green;
+  box-sizing: border-box;
+  cursor: move;
 }
 
 .box-item:last-child {
@@ -166,8 +168,8 @@ li {
 }
   
 .cdk-drag-preview {
-  box-sizing: border-box;
   border-radius: 4px;
+  box-sizing: border-box;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
@@ -187,4 +189,8 @@ li {
   
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

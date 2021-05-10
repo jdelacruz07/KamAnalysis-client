@@ -1,35 +1,38 @@
 h1 {
     text-align: center;
     margin-top: 15px;
+    color: #daf13e;
 }
 
 button {
-    width: 186px;
-}
-
-button:last-child {
-    margin-top: 15px;
+    width: 189px;
+    margin: 0 auto;
+    margin-top: 10px;
+    /* display: block; */
 }
 
 input {
-    border: 0;
-    margin-bottom: 10px;
+    display: block;
     background-color: transparent;
-    border-bottom: 1px solid green ;
     text-align: center;
     color: green;
+    border: 0;
+    border-bottom: 1px solid green ;
     border-radius: 5px;
-    /* outline: none; */
     box-shadow: 1px 1px 5px green;
-
+    margin-bottom: 10px;
 }
 
 label {
+    width: 160px;
+    display: block;
     color: #daf13e;
 }
 
 textarea {
-    color: transparent;
+    color: green;
+    background-color: transparent;
+    border: 1px solid green;
     margin-bottom: 10px;
 }
 
@@ -38,15 +41,41 @@ textarea {
 }
 
 .form-fields {
-    max-width: 200px;
+    max-width: 189px;
     margin: 0 auto;
-    display: block;
+    padding-bottom: 15px;
+    border-bottom: .1rem solid #dadada;
+    margin-bottom: 15px;
 }
 
 .container-button {
-    width: 186px;
-    display: flex;
-    justify-content: flex-end;
-    border-bottom: .1rem solid #dadada;
-    padding-bottom: 10px;
+    max-width: 189px;
+    margin: 0 auto;
+}
+
+span {
+    color: green;
+    margin-left: 5px;
+}
+
+
+@media (min-width: 480px)  {
+    
+    .form-fields {
+        max-width: 55%;
+    }
+    
+    .wrap-fields {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .wrap-field {
+        margin-right: 15px;
+    }
+    
+    .radio {
+        display: flex;
+    }
+    
 }
