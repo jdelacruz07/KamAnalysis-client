@@ -1,8 +1,17 @@
-<div class="container">
-    <div class="bull" routerLink="/analysis">
-        <img src="../assets/img/bull_01.jpg" alt="bear">
+<section>
+    <p class="crypto" [@outIn]="outIn">{{base}}-{{currency}} Compra: {{amount}}</p>
+</section>
+
+<section>
+    <div *ngFor="let item of market">
+        <div *ngIf="item === 'stocks'">
+            <app-analysis *ngIf="goAheadStocks" [strategies]="stocks" [typeOfMarket]="item"></app-analysis>
+        </div>
+        <div *ngIf="item === 'comodities'">
+            <app-analysis *ngIf="goAheadComodities" [strategies]="comodities" [typeOfMarket]="item"></app-analysis>
+        </div>
+        <div *ngIf="item === 'forex'">
+            <app-analysis *ngIf="goAheadForex" [strategies]="forex" [typeOfMarket]="item"></app-analysis>
+        </div>
     </div>
-    <div class="bear" routerLink="/analysis">
-        <img src="../assets/img/bull_02.jpg" alt="bull">
-    </div>
-</div>
+</section>

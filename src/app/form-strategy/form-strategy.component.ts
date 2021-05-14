@@ -19,6 +19,7 @@ export class FormStrategyComponent implements OnInit {
   strategyForm = this.fb.group({
     asset: ['', Validators.required],
     market: ['share'],
+    position: ['corto'],
     strategy: ['', Validators.required],
     state: 'inactive',
     buySell: [{ value: '' }],

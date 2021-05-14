@@ -1,33 +1,39 @@
-<section>
-    <p class="crypto" [@outIn]="outIn">{{base}}-{{currency}} Compra: {{amount}}</p>
-</section>
-
-<div [@imgAnimation]="imgAnimation">
-    <section *ngIf="principal" class="strategy-head" (click)="getDetails(principal)">
-        <div class="container-img">
-            <img class="img-principal" [src]="principal.urlImg" [alt]="principal.altImg">
-        </div>
-        <div class="strategy-item">
-            <p>{{principal.asset}} </p>
-            <p>{{principal.strategy}}</p>
-            <p>{{principal.buySell}} </p>
-        </div>
-    </section>
-    <section class="container">
-        <div *ngFor="let item of assets; let i = index">
-            <div class="strategy" *ngIf="i > 0 " (click)="getDetails(item)">
+<section [@imgAnimation]="imgAnimation">
+    <h1>{{typeOfMarket}}</h1>
+    <div class="strategy-head">
+        <div *ngFor="let item of strategies; let i = index">
+            <div class="strategy" *ngIf="i == 0 ">
                 <img class="img-strategy" [src]="item.urlImg" [alt]="item.altImg">
-                <div class="strategy-item">
+                <div class="wrap-strategy" (click)="getDetails(item)">
+                    <p>{{item.asset}} </p>
+                    <p>{{item.strategy}}</p>
+                    <p>{{item.buySell}} </p>
+                    <p>{{item.createdAt | date: 'd MMM, y'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-strategies">
+        <div *ngFor="let item of strategies; let i = index">
+            <div class="strategy" *ngIf="i > 0 ">
+                <img class="img-strategy" [src]="item.urlImg" [alt]="item.altImg">
+                <div class="wrap-strategy" (click)="getDetails(item)">
                     <p>{{item.asset}} </p>
                     <p>{{item.strategy}}</p>
                     <p>{{item.buySell}} </p>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
-<section *ngIf="details">
-    <h2>El {{details.asset}}</h2>
-    <p>{{details.strategy}}</p>
+<section class="share" *ngIf="share">
+    <h2>El {{share.asset}}</h2>
+    <img class="img-strategy" [src]="share.urlImg" [alt]="share.altImg">
+    <p>Estrategia: {{share.position}}</p>
+    <p>{{share.strategy}}</p>
+    <p>Entrada alrededor de los {{share.buySell|currency}}, como se muetra en
+        el grafico con un stop loss en los {{share.stopLoss| currency}} y un objetivo alrededor de los
+        {{share.takeProfit|currency}} </p>
+    <p>El ratio riesgo beneficio es de {{performanceRisk}} a 1.</p>
 </section>

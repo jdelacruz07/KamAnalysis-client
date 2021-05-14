@@ -24,8 +24,8 @@ export class StrategyService {
     return this.http.post<Strategy>(this.url, strategy, httpOptions);
   }
 
-  getAllStrategies() {
-    let urlWithParams = `${this.url}?page=0&size=4&sort=id,desc`;
+  getStrategiesByMarket(market: any) {
+    let urlWithParams = `${this.url}/${market}?page=0&size=4&sort=id,desc`;
     return this.http.get<Pageable>(urlWithParams);
   }
 

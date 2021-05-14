@@ -9,11 +9,10 @@ h2 {
 }
 
 .strategy-head {
-  display: inline-block;
+  display: block;
 }
 
-.container-img {
-  max-width: 100%;
+.wrap-strategy {
   cursor: pointer;
 }
 
@@ -25,7 +24,6 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   padding: 0px;
-  cursor: pointer;
 }
 
 .strategy {
@@ -42,27 +40,43 @@ h2 {
 @media (min-width: 480px)  { 
 
   .strategy-head {
+    max-width: 100%;
     display: flex;
     margin-bottom: 15px;
   }
 
-  .strategy-head .container-img {
+  .strategy-head .wrap-img {
     margin-right: 5px;
   }
 
-  .container {
+  .wrap-strategies {
     display: flex;
-    flex-wrap: nowrap;
     padding: 0;
   }
   
   .strategy {
-    display: inline-block;
+    display: block;
     margin-right: 15px;
+  }
+
+  .wrap-img {
+    flex: 0 1 auto;
+  }
+
+  .wrap-strategy {
+    flex: 0 1 auto;
   }
   
   .img-strategy {
     max-width: 100%;
+    margin-bottom: 5px;
+  }
+
+  /* ******* share *********** */
+  
+  .share {
+    max-width: 80%;
+    margin: 0 auto;
   }
   
 }

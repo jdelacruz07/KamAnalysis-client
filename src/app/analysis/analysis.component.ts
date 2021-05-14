@@ -1,30 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ApiCryptoService } from '../api-crypto.service';
-import { interval, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { trigger, state, style, animate, transition, keyframes, query, stagger } from '@angular/animations';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { trigger, style, animate, transition, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { StrategyService } from '../strategy.service';
-
 
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.css'],
   animations: [
-    trigger('outIn', [
-      state('in', style({
-        opacity: 1,
-        color: '#daf13e',
-      })),
-      transition('* => in', [
-        animate('2s', keyframes([
-          style({ transform: 'translateX(-100%)', offset: 0 }),
-          style({ color: "#daf13e", offset: 1 }),
-          style({ transform: 'translateX(0%)', offset: 1 }),
-        ]))
-      ]),
-    ]),
     trigger('imgAnimation', [
       transition('* => inImg', [
         query('img', style({ opacity: 0 })),
@@ -35,56 +18,44 @@ import { StrategyService } from '../strategy.service';
     ]),
   ]
 })
-export class AnalysisComponent implements OnInit, OnDestroy {
+export class AnalysisComponent implements OnInit, OnChanges {
 
-  crypto$: Observable<any>;
-  endCrypto$: any;
-  base: string;
-  amount: string;
-  currency: string;
+  @Input() strategies: Strategy;
+  @Input() typeOfMarket;
 
-  outIn = 'in';
-  imgAnimation = null;
+  imgAnimation = 'inImg';
 
-  principal: Strategy;
-  assets: Strategy[] = [];
-  details: Strategy;
+  share: Strategy;
+  performanceRisk: number;
 
-  constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService, private router: Router) {
-    this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
+  constructor(private strategyService: StrategyService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.endCrypto$ = this.crypto$.subscribe();
-    this.getAllStrategies();
+    this.translateName();
   }
 
-  getDetails(item: Strategy) {
-    console.log("Esto son los detalles ", item);
-    this.details = item;
+  ngOnChanges(changes: SimpleChanges): void {
+    // this.getStrategiesByMarket();
   }
 
-  getAllStrategies() {
-    this.strategyService.getAllStrategies().subscribe((strategies) => {
-      this.imgAnimation = 'inImg';
-      console.log("Estrategias ", strategies.content)
-      this.principal = strategies.content[0];
-      this.assets = strategies.content;
-    })
+  getDetails(asset: Strategy) {
+    this.share = asset;
+    this.performanceRisk = (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss)
   }
 
-  getCrypto() {
-    let nameCrypto = "BTC-USD";
-    this.apiCrypto.getCrypto(nameCrypto).subscribe((crypto: DataCrypto) => {
-      this.base = crypto.data.base;
-      this.currency = crypto.data.currency;
-      this.amount = crypto.data.amount;
-      console.log(`Recibo ${this.base} y ${this.amount}`);
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.endCrypto$.unsubscribe();
+  translateName() {
+    if (this.typeOfMarket === 'stocks') {
+      this.typeOfMarket = 'Acciones'
+    } else {
+      if (this.typeOfMarket === 'comodities') {
+        this.typeOfMarket = 'Materias primas'
+      } else {
+        if (this.typeOfMarket === 'forex') {
+          this.typeOfMarket = 'Divisas'
+        }
+      }
+    }
   }
 
 }
@@ -102,11 +73,14 @@ export interface Crypto {
 export interface Strategy {
   id: string;
   asset: string;
+  market: string;
+  position: string;
   strategy: string;
   buySell: number;
   stopLoss: number;
   takeProfit: number;
   urlImg: string;
   altImg: string;
+  createdAt: Date;
 }
 

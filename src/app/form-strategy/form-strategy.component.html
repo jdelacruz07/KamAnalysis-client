@@ -10,14 +10,23 @@
             <div class="wrap-field">
                 <label>Mercado:</label>
                 <label class="radio" for="">
-                    <input id="market" formControlName="market" type="radio" value="share"> <span>Acciones</span>
+                    <input id="market" formControlName="market" type="radio" value="stocks"> <span>Acciones</span>
                 </label>
                 <label class="radio" for="">
-                    <input id="market" formControlName="market" type="radio" value="materiaPrima"> <span> Materias
+                    <input id="market" formControlName="market" type="radio" value="comodities"> <span> Materias
                         primas</span>
                 </label>
                 <label class="radio" for="">
-                    <input id="market" formControlName="market" type="radio" value="divisa"> <span> Divisas</span>
+                    <input id="market" formControlName="market" type="radio" value="forex"> <span> Divisas</span>
+                </label>
+            </div>
+            <div class="wrap-field">
+                <label>Posicion:</label>
+                <label class="radio">
+                    <input id="position" formControlName="position" type="radio" value="corto"> <span>Corto</span>
+                </label>
+                <label class="radio">
+                    <input id="position" formControlName="position" type="radio" value="largo"> <span> Largo</span>
                 </label>
             </div>
         </fieldset>
