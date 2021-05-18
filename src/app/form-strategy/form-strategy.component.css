@@ -4,11 +4,13 @@ h1 {
     color: #daf13e;
 }
 
+form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 button {
     width: 189px;
-    margin: 0 auto;
-    margin-top: 10px;
-    /* display: block; */
 }
 
 input {
@@ -41,17 +43,13 @@ textarea {
 }
 
 .form-fields {
-    max-width: 100%;
+    max-width: 96%;
     margin: 0 auto;
     padding-bottom: 15px;
     border-bottom: .1rem solid #dadada;
     margin-bottom: 15px;
 }
 
-.container-button {
-    max-width: 189px;
-    margin: 0 auto;
-}
 
 span {
     color: green;
@@ -71,14 +69,16 @@ span {
     margin-right: 15px;
 }
 
+.container-button {
+    width: 189px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
 @media (min-width: 480px)  {
     
     .form-fields {
         max-width: 85%;
-        margin: 0 auto;
     }
-    
-    
-  
-    
+        
 }

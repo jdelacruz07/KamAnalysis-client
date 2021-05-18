@@ -71,7 +71,7 @@
                 <input id="takeProfit" formControlName="takeProfit" type="text">
             </div>
         </fieldset>
-        <fieldset class="wrap-fields">
+        <fieldset class="container-button">
             <button type="submit" class="btn btn-primary" [disabled]="!(strategyForm.valid )">Guardar</button>
             <!-- [disabled]="!(strategyForm.valid && isLogged)">Guardar</button> -->
         </fieldset>
@@ -79,7 +79,6 @@
 </form>
 
 <div class="container-button">
-
     <button class="btn btn-secondary" (click)="returnPerformanceRisk()"><svg xmlns="http://www.w3.org/2000/svg"
             width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up" viewBox="0 0 16 16">
             <path fill-rule="evenodd"

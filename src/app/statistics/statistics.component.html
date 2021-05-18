@@ -9,12 +9,12 @@
     <section>
         <form [formGroup]="gapForm" (ngSubmit)="addGap()">
             <div class="form-fields">
-                <div>
+                <div class="form-field">
                     <label for="gap">Se cierra el hueco:</label>
                     <input id="gap" type="radio" value="Si" formControlName="gapClose">Si
                     <input id="gap" type="radio" value="No" formControlName="gapClose">No
                 </div>
-                <div>
+                <div class="form-field">
                     <label for="date">Fecha: </label>
                     <input class="date" id="date" type="date" formControlName="dateSelected">
                 </div>

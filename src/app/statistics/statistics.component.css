@@ -5,7 +5,6 @@ p {
 label {
     width: 115px;
     text-align: right;
-    margin-right: 5px;
 }
 
 table {
@@ -15,15 +14,21 @@ table {
 }
 
 form {
+    max-width: 85%;
+    margin: 0 auto;
     padding-bottom: 15px;
     border-bottom: .1rem solid #dadada ;
     margin-top: 15px;
+}
 
+input {
+    margin: 0 3px 0 8px;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .gap-error {
@@ -36,11 +41,17 @@ form {
 }
 
 .form-fields {
-    width: 250px;
+    max-width: 85%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: left; 
+    align-items: baseline;
+}
+
+.form-field {
+    display: flex;
+    /* flex-wrap: wrap; */
     align-items: baseline;
 }
 
@@ -107,9 +118,7 @@ form {
 @media (min-width: 480px) {
     
     .form-fields {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: nowrap;
+        justify-content: space-around; 
     }
     
 }
