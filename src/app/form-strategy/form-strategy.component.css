@@ -41,7 +41,7 @@ textarea {
 }
 
 .form-fields {
-    max-width: 189px;
+    max-width: 100%;
     margin: 0 auto;
     padding-bottom: 15px;
     border-bottom: .1rem solid #dadada;
@@ -58,24 +58,27 @@ span {
     margin-left: 5px;
 }
 
+.radio {
+    display: flex;
+}
+
+.wrap-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wrap-field {
+    margin-right: 15px;
+}
 
 @media (min-width: 480px)  {
     
     .form-fields {
-        max-width: 55%;
+        max-width: 85%;
+        margin: 0 auto;
     }
     
-    .wrap-fields {
-        display: flex;
-        flex-wrap: wrap;
-    }
     
-    .wrap-field {
-        margin-right: 15px;
-    }
-    
-    .radio {
-        display: flex;
-    }
+  
     
 }
