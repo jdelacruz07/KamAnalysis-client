@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { trigger, style, animate, transition, query, stagger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { StrategyService } from '../strategy.service';
@@ -20,26 +20,47 @@ import { StrategyService } from '../strategy.service';
 })
 export class AnalysisComponent implements OnInit, OnChanges {
 
-  @Input() strategies: Strategy;
+  @Input() strategies: Strategy[];
   @Input() typeOfMarket;
 
   imgAnimation = 'inImg';
 
   share: Strategy;
   performanceRisk: number;
+  isActiveDetails: boolean;
+  @Output() showResponse: EventEmitter<string> = new EventEmitter();
+  restOfStrategies: Strategy[];
+  strategy: Strategy[] = [];
 
   constructor(private strategyService: StrategyService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.translateName();
+    let strategyPrincipal = this.strategies[0];
+    this.strategy.push(strategyPrincipal);
+    let strategies: Strategy[] = this.strategies.slice();
+    strategies.splice(0, 1);
+    this.restOfStrategies = strategies.slice();
+    console.log("El resto de estragegias son ", this.restOfStrategies)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // this.getStrategiesByMarket();
   }
 
+  backTypeOfMarket() {
+    this.isActiveDetails = false;
+  }
+
+  backToAllMarkets() {
+    this.isActiveDetails = false;
+    this.showResponse.emit("all");
+  }
+
   getDetails(asset: Strategy) {
+    this.showResponse.emit(asset.market);
+    this.isActiveDetails = true;
     this.share = asset;
     this.performanceRisk = (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss)
   }

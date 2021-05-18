@@ -62,7 +62,6 @@ export class StatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.getGaps(this.page);
     this.isAuthenticated();
-    console.log("Esta autorizado ", this.isAuthenticate)
   }
 
   isAuthenticated() {

@@ -1,5 +1,5 @@
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -28,7 +28,7 @@ import { StrategyService } from '../strategy.service';
   ]
 })
 
-export class PresentationComponent implements OnInit {
+export class PresentationComponent implements OnInit, OnDestroy {
 
   crypto$: Observable<any>;
   endCrypto$: any;
@@ -43,9 +43,14 @@ export class PresentationComponent implements OnInit {
   stocks: Strategy[];
   comodities: Strategy[];
   forex: Strategy[];
+
   goAheadStocks: boolean;
   goAheadComodities: boolean;
   goAheadForex: boolean;
+
+  showComodities: boolean = true;
+  showForex: boolean = true;
+  showStocks: boolean = true;
 
   constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
@@ -54,6 +59,27 @@ export class PresentationComponent implements OnInit {
   ngOnInit(): void {
     this.endCrypto$ = this.crypto$.subscribe();
     this.getStrategies();
+  }
+
+  showResponse(typeOfMarket) {
+    if (typeOfMarket === "stocks") {
+      this.showComodities = false;
+      this.showForex = false;
+    } else {
+      if (typeOfMarket === "comodities") {
+        this.showStocks = false;
+        this.showForex = false;
+      } else {
+        if (typeOfMarket === 'forex') {
+          this.showStocks = false;
+          this.showComodities = false;
+        } else {
+          this.showStocks = true;
+          this.showComodities = true;
+          this.showForex = true;
+        }
+      }
+    }
   }
 
   getStrategies() {
@@ -99,11 +125,11 @@ export class PresentationComponent implements OnInit {
       this.base = crypto.data.base;
       this.currency = crypto.data.currency;
       this.amount = crypto.data.amount;
-      console.log(`Recibo ${this.base} y ${this.amount}`);
+      // console.log(`Recibo ${this.base} y ${this.amount}`);
     });
   }
 
   ngOnDestroy(): void {
-    this.endCrypto$;
+    this.endCrypto$.unsubscribe();
   }
 }

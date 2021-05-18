@@ -21,10 +21,12 @@ export class IdeaComponent implements OnInit {
   ideaEdit: boolean = true;
   idEdit: number;
 
-  constructor(private ideaService: IdeaService, @Inject(DOCUMENT) private document: any, private auth: AuthService) { }
+  constructor(private ideaService: IdeaService, @Inject(DOCUMENT) private document: any, private auth: AuthService) {
+    this.inputChange$.pipe(debounceTime(2000));
+  }
 
   ngOnInit(): void {
-    this.inputChange$.pipe(debounceTime(2000)).subscribe(x => {
+    this.inputChange$.subscribe(x => {
       let idea: Idea = { id: undefined, idea: undefined, type: undefined };
       let newIdea: any = x;
       idea.idea = newIdea;
@@ -102,7 +104,6 @@ export class IdeaComponent implements OnInit {
     ideasList.forEach(idea => {
       if (idea.type != "idea") {
         idea.type = "idea";
-        console.log("La idea para actualizar", idea)
         this.ideaService.updateidea(idea).subscribe();
       }
     });
@@ -123,7 +124,6 @@ export class IdeaComponent implements OnInit {
     strategyList.forEach(idea => {
       if (idea.type != "strategy") {
         idea.type = "strategy";
-        console.log("La estrategia para actualizar", idea)
         this.ideaService.updateidea(idea).subscribe();
       }
     });
@@ -144,7 +144,6 @@ export class IdeaComponent implements OnInit {
     conclusionList.forEach(idea => {
       if (idea.type != "conclusion") {
         idea.type = "conclusion";
-        console.log("La conclusion para actualizar", idea)
         this.ideaService.updateidea(idea).subscribe();
       }
     });
@@ -160,7 +159,6 @@ export class IdeaComponent implements OnInit {
   }
 
 }
-
 
 
 export interface Idea {

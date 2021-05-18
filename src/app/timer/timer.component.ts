@@ -22,12 +22,13 @@ export class TimerComponent implements OnInit {
   error: boolean;
 
   constructor() {
-    this.timer$.pipe(debounceTime(1000)).subscribe(seconds => {
-      this.workTimer(seconds)
-    });
+    this.timer$.pipe(debounceTime(1000));
   }
 
   ngOnInit(): void {
+    this.timer$.subscribe(seconds => {
+      this.workTimer(seconds)
+    });
   }
 
   workTimer(seconds) {

@@ -34,7 +34,6 @@ export class PerformanceRiskComponent implements OnInit {
   }
 
   onFormStrategy() {
-    console.log(this.newStrategy)
     this.newStrategy = true;
   }
 
@@ -51,7 +50,6 @@ export class PerformanceRiskComponent implements OnInit {
   }
 
   riskPerformance() {
-    console.log("los datos son ", this.ratioForm.value)
     let stopLoss = this.ratioForm.value.stopLoss;
     let buySell = this.ratioForm.value.buySell;
     let takeProfit = this.ratioForm.value.takeProfit;

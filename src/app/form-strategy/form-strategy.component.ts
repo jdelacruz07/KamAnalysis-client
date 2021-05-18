@@ -32,7 +32,6 @@ export class FormStrategyComponent implements OnInit {
   constructor(private fb: FormBuilder, private strategyService: StrategyService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    console.log("Valores importados", this.totalRisk)
     this.strategyForm.get('stopLoss').setValue(this.totalRisk.stop)
     this.strategyForm.get('buySell').setValue(this.totalRisk.buy)
     this.strategyForm.get('takeProfit').setValue(this.totalRisk.profit)
@@ -41,7 +40,6 @@ export class FormStrategyComponent implements OnInit {
 
   verifyAuth() {
     this.isLogged = this.authService.isAuthenticate;
-    console.log("Esta auth ", this.isLogged);
   }
 
 
@@ -51,7 +49,6 @@ export class FormStrategyComponent implements OnInit {
 
   sendForm(form) {
     this.strategyService.addStrategy(form).subscribe(x => {
-      console.log("Esta es la nueva estrategia", x)
     });
   }
 

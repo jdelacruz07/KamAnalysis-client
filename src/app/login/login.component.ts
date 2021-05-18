@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
 
   verifyUser() {
     if (this.auth.authenticated()) {
-      console.log("Esta autorizado en login ", this.auth.authenticated())
       this.router.navigate(['']);
     }
   }
