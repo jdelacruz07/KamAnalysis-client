@@ -20,7 +20,7 @@ import { StrategyService } from '../strategy.service';
 })
 export class AnalysisComponent implements OnInit, OnChanges {
 
-  @Input() strategies: Strategy;
+  @Input() strategies: Strategy[];
   @Input() typeOfMarket;
 
   imgAnimation = 'inImg';
@@ -29,12 +29,20 @@ export class AnalysisComponent implements OnInit, OnChanges {
   performanceRisk: number;
   isActiveDetails: boolean;
   @Output() showResponse: EventEmitter<string> = new EventEmitter();
+  restOfStrategies: Strategy[];
+  strategy: Strategy[] = [];
 
   constructor(private strategyService: StrategyService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.translateName();
+    let strategyPrincipal = this.strategies[0];
+    this.strategy.push(strategyPrincipal);
+    let strategies: Strategy[] = this.strategies.slice();
+    strategies.splice(0, 1);
+    this.restOfStrategies = strategies.slice();
+    console.log("El resto de estragegias son ", this.restOfStrategies)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
