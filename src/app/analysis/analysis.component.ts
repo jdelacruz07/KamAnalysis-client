@@ -49,8 +49,10 @@ export class AnalysisComponent implements OnInit, OnChanges {
     // this.getStrategiesByMarket();
   }
 
-  backTypeOfMarket() {
+  backTypeOfMarket(market) {
     this.isActiveDetails = false;
+    console.log("Es materias primas ", market)
+    this.showResponse.emit(market);
   }
 
   backToAllMarkets() {
@@ -69,7 +71,7 @@ export class AnalysisComponent implements OnInit, OnChanges {
     if (this.typeOfMarket === 'stocks') {
       this.typeOfMarket = 'Acciones'
     } else {
-      if (this.typeOfMarket === 'comodities') {
+      if (this.typeOfMarket === 'commodities') {
         this.typeOfMarket = 'Materias primas'
       } else {
         if (this.typeOfMarket === 'forex') {

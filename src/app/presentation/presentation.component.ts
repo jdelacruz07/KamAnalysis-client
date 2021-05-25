@@ -38,19 +38,19 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   outIn = 'in';
 
-  market: string[] = ['stocks', 'comodities', 'forex'];
+  market: string[] = ['stocks', 'commodities', 'forex'];
 
   stocks: Strategy[];
-  comodities: Strategy[];
+  commodities: Strategy[];
   forex: Strategy[];
 
   goAheadStocks: boolean;
-  goAheadComodities: boolean;
+  goAheadCommodities: boolean;
   goAheadForex: boolean;
 
-  showComodities: boolean = true;
-  showForex: boolean = true;
   showStocks: boolean = true;
+  showCommodities: boolean = true;
+  showForex: boolean = true;
 
   constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
@@ -63,19 +63,22 @@ export class PresentationComponent implements OnInit, OnDestroy {
 
   showResponse(typeOfMarket) {
     if (typeOfMarket === "stocks") {
-      this.showComodities = false;
+      this.showStocks = true;
+      this.showCommodities = false;
       this.showForex = false;
     } else {
-      if (typeOfMarket === "comodities") {
+      if (typeOfMarket === "commodities") {
         this.showStocks = false;
+        this.showCommodities = true;
         this.showForex = false;
       } else {
         if (typeOfMarket === 'forex') {
           this.showStocks = false;
-          this.showComodities = false;
+          this.showCommodities = false;
+          this.showForex = true;
         } else {
           this.showStocks = true;
-          this.showComodities = true;
+          this.showCommodities = true;
           this.showForex = true;
         }
       }
@@ -90,10 +93,10 @@ export class PresentationComponent implements OnInit, OnDestroy {
           this.goAheadStocks = this.checkLength(this.stocks);
         });
       } else {
-        if (market === 'comodities') {
+        if (market === 'commodities') {
           this.strategyService.getStrategiesByMarket(market).subscribe(x => {
-            this.comodities = x.content;
-            this.goAheadComodities = this.checkLength(this.comodities);
+            this.commodities = x.content;
+            this.goAheadCommodities = this.checkLength(this.commodities);
           });
         } else {
           this.strategyService.getStrategiesByMarket(market).subscribe(x => {

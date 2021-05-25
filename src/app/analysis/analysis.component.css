@@ -4,12 +4,31 @@
   transform: translateX(100%);
 }
 
+h1 {
+  color: #daf13e;
+  margin-top: 15px;
+}
+
 h2 {
   color: cadetblue;
 }
 
-section {
+main {
   border-bottom: .1rem solid #dadada;
+  margin-bottom: 15px;
+}
+
+.nameAsset {
+  color: cadetblue;
+}
+
+button {
+  /* width: 100%; */
+  margin-right: 5px;
+}
+
+.wrap-button {
+  width: 85px;
 }
 
 .img-strategy-head {
@@ -31,23 +50,23 @@ section {
 }
 
 .img-rest {
-  max-width: 100%;
-  /* max-width: 160px; */
+  /* max-width: 100%; */
+  max-width: 160px;
 }
 
 
 @media (min-width: 480px)  { 
-
+  
   .strategy-head {
     max-width: 100%;
     display: flex;
     margin-bottom: 15px;
   }
-
+  
   .strategy-head .wrap-img-head {
     margin-right: 5px;
   }
-
+  
   .wrap-strategies {
     display: flex;
     padding: 0;
@@ -57,19 +76,42 @@ section {
     display: block;
     margin-right: 15px;
   }
-
+  
+  .img-rest {
+    max-width: 100%;
+    margin-bottom: 5px;
+  }
+  
 }
 
-  /* ******* share *********** */
-  
+/* ******* share *********** */
+
+.subMenu {
+  margin: 15px 0 15px 0;
+}
+
+.btn-back {
+  width: 85px;
+}
+
+.share {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.img-share {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 480px)  { 
   .share {
-    max-width: 80%;
+    max-width: 75%;
     margin: 0 auto;
   }
+}
 
-  .img-share {
-    max-width: 100%;
-  }
-  
 
-  
+
+

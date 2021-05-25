@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="(showStocks && showCommodities && showForex)">
     <p class="crypto" [@outIn]="outIn">{{base}}-{{currency}} Compra: {{amount}}</p>
 </section>
 
@@ -6,20 +6,20 @@
     <div *ngFor="let item of market">
         <div *ngIf="showStocks">
             <div id="stocks" *ngIf="item === 'stocks'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadStocks" [strategies]="stocks"
-                    [typeOfMarket]="item"></app-analysis>
+                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadStocks"
+                    [strategies]="stocks" [typeOfMarket]="item"></app-analysis>
             </div>
         </div>
-        <div *ngIf="showComodities">
-            <div id="comodities" *ngIf="item === 'comodities'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadComodities" [strategies]="comodities"
-                    [typeOfMarket]="item"></app-analysis>
+        <div *ngIf="showCommodities">
+            <div id="commodities" *ngIf="item === 'commodities'">
+                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadCommodities"
+                    [strategies]="commodities" [typeOfMarket]="item"></app-analysis>
             </div>
         </div>
         <div *ngIf="showForex">
             <div id="forex" *ngIf="item === 'forex'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadForex" [strategies]="forex"
-                    [typeOfMarket]="item"></app-analysis>
+                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadForex"
+                    [strategies]="forex" [typeOfMarket]="item"></app-analysis>
             </div>
         </div>
     </div>

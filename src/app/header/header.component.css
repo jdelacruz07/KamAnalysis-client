@@ -27,3 +27,7 @@
 .mat-button {
     color: #daf13e;
 }
+
+.title, .time {
+    cursor: pointer;
+}
