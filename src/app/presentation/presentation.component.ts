@@ -43,14 +43,13 @@ export class PresentationComponent implements OnInit, OnDestroy {
   stocks: Strategy[];
   commodities: Strategy[];
   forex: Strategy[];
-
   goAheadStocks: boolean;
   goAheadCommodities: boolean;
   goAheadForex: boolean;
-
   showStocks: boolean = true;
   showCommodities: boolean = true;
   showForex: boolean = true;
+  oneMarket: boolean;
 
   constructor(private apiCrypto: ApiCryptoService, private strategyService: StrategyService) {
     this.crypto$ = interval(1000).pipe(map(tick => this.getCrypto()));
@@ -62,6 +61,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
   }
 
   showResponse(typeOfMarket) {
+    this.oneMarket = true;
     if (typeOfMarket === "stocks") {
       this.showStocks = true;
       this.showCommodities = false;
@@ -77,6 +77,7 @@ export class PresentationComponent implements OnInit, OnDestroy {
           this.showCommodities = false;
           this.showForex = true;
         } else {
+          this.oneMarket = false;
           this.showStocks = true;
           this.showCommodities = true;
           this.showForex = true;

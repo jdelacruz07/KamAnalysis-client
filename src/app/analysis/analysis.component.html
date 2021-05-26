@@ -10,7 +10,6 @@
                     <p>{{item.createdAt | date: 'd MMM, y'}}</p>
                     <p class="nameAsset">{{item.asset}} </p>
                     <p>{{item.strategy}}</p>
-                    <!-- <p>{{item.buySell}} </p> -->
                 </div>
             </div>
         </div>
@@ -24,21 +23,27 @@
                         <p>{{item.createdAt | date: 'd MMM, y'}}</p>
                         <p class="nameAsset">{{item.asset}} </p>
                         <p>{{item.strategy}}</p>
-                        <!-- <p>{{item.buySell}} </p> -->
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <button *ngIf="onlyOneMarket" class="btn btn-secondary btn-back" (click)="backToAllMarkets()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-arrow-90deg-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
+        </svg>
+    </button>
 </div>
 
 
 <div *ngIf="isActiveDetails">
     <section class="share" *ngIf="share">
         <div class="subMenu">
-            <button class="btn btn-primary" (click)="backTypeOfMarket('stocks')"> Acciones</button>
-            <button class="btn btn-primary" (click)="backTypeOfMarket('forex')"> Divisas</button>
-            <button class="btn btn-primary" (click)="backTypeOfMarket('commodities')"> Materias primas</button>
+            <button class="btn btn-primary" (click)="toOneMarket('stocks')"> Acciones</button>
+            <button class="btn btn-primary" (click)="toOneMarket('forex')"> Divisas</button>
+            <button class="btn btn-primary" (click)="toOneMarket('commodities')"> Materias primas</button>
         </div>
         <h2>{{share.asset}}</h2>
         <img class="img-share" [src]="share.urlImg" [alt]="share.altImg">

@@ -3,24 +3,25 @@
 </section>
 
 <section>
-    <div *ngFor="let item of market">
-        <div *ngIf="showStocks">
-            <div id="stocks" *ngIf="item === 'stocks'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadStocks"
-                    [strategies]="stocks" [typeOfMarket]="item"></app-analysis>
-            </div>
+    <div *ngIf="showStocks">
+        <div id="stocks">
+            <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadStocks" [strategies]="stocks"
+                [onlyOneMarket]="oneMarket">
+            </app-analysis>
         </div>
-        <div *ngIf="showCommodities">
-            <div id="commodities" *ngIf="item === 'commodities'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadCommodities"
-                    [strategies]="commodities" [typeOfMarket]="item"></app-analysis>
-            </div>
+    </div>
+    <div *ngIf="showCommodities">
+        <div id="commodities">
+            <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadCommodities" [strategies]="commodities"
+                [onlyOneMarket]="oneMarket">
+            </app-analysis>
         </div>
-        <div *ngIf="showForex">
-            <div id="forex" *ngIf="item === 'forex'">
-                <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadForex"
-                    [strategies]="forex" [typeOfMarket]="item"></app-analysis>
-            </div>
+    </div>
+    <div *ngIf="showForex">
+        <div id="forex">
+            <app-analysis (showResponse)="showResponse($event)" *ngIf="goAheadForex" [strategies]="forex"
+                [onlyOneMarket]="oneMarket">
+            </app-analysis>
         </div>
     </div>
 </section>

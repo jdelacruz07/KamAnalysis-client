@@ -21,41 +21,41 @@ import { StrategyService } from '../strategy.service';
 export class AnalysisComponent implements OnInit, OnChanges {
 
   @Input() strategies: Strategy[];
-  @Input() typeOfMarket;
+  @Input() onlyOneMarket;
+  @Output() showResponse: EventEmitter<string> = new EventEmitter();
 
   imgAnimation = 'inImg';
-
   share: Strategy;
   performanceRisk: number;
   isActiveDetails: boolean;
-  @Output() showResponse: EventEmitter<string> = new EventEmitter();
   restOfStrategies: Strategy[];
   strategy: Strategy[] = [];
+  typeOfMarket: string;
 
   constructor(private strategyService: StrategyService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.translateName();
     let strategyPrincipal = this.strategies[0];
+    this.typeOfMarket = strategyPrincipal.market;
     this.strategy.push(strategyPrincipal);
     let strategies: Strategy[] = this.strategies.slice();
     strategies.splice(0, 1);
     this.restOfStrategies = strategies.slice();
-    console.log("El resto de estragegias son ", this.restOfStrategies)
+    this.translateName();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // this.getStrategiesByMarket();
   }
 
-  backTypeOfMarket(market) {
+  toOneMarket(market) {
+    this.onlyOneMarket = true;
     this.isActiveDetails = false;
-    console.log("Es materias primas ", market)
     this.showResponse.emit(market);
   }
 
   backToAllMarkets() {
+    this.onlyOneMarket = false;
     this.isActiveDetails = false;
     this.showResponse.emit("all");
   }
@@ -64,7 +64,7 @@ export class AnalysisComponent implements OnInit, OnChanges {
     this.showResponse.emit(asset.market);
     this.isActiveDetails = true;
     this.share = asset;
-    this.performanceRisk = (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss)
+    this.performanceRisk = (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss);
   }
 
   translateName() {

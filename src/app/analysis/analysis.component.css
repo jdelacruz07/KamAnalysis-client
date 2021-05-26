@@ -36,8 +36,11 @@ button {
   margin-bottom: 10px;
 }
 
-.wrap-strategy-content {
+.wrap-strategy-content:hover {
+  color: cadetblue;
+  /* color: royalblue; */
   cursor: pointer;
+
 }
 
 .strategy-rest {
