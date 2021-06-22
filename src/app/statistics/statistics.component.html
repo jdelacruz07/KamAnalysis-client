@@ -1,10 +1,17 @@
 <div class="container">
-    <section>
-        <div class="percentage">
-            <div class="element-header">El hueco tiene una probablidad de cierre del:</div>
-            <div class="element-percentage">{{ percentage | percent: '1.0-2'}}</div>
-        </div>
-    </section>
+    <header class="header">
+        <h1>El hueco</h1>
+        <dl>
+            <dt>¿Que es un hueco en el análisis técnico?</dt>
+            <dd>Son espacios que quedan en el gráfico de velas y que indican que no ha habido transacciones. Se forma un
+                hueco ascendente cuando el precio más bajo de un dia de contratación es más alto que el máximo del día
+                anterior. Un hueco ascendente normalmente indica fortaleza en el mercado, mientras que un hueco
+                descendente es señal de debilidad.</dd>
+        </dl>
+        <p class="percentage">El hueco tiene una probablidad de cierre del:<span class="percentage-outcome">{{
+                percentage | percent: '1.0-2'}}</span>
+        </p>
+    </header>
 
     <section>
         <form [formGroup]="gapForm" (ngSubmit)="addGap()">
@@ -28,7 +35,7 @@
     </section>
 
     <section>
-        <div class="header-history">Historico</div>
+        <h2 class="historical">Historico</h2>
         <table>
             <th>Fecha</th>
             <th>Cierre</th>
@@ -48,7 +55,6 @@
     </section>
 
     <section>
-
         <div class="menu">
             <div *ngFor="let menu of menuDisplay; let i = index">
                 <div *ngIf="page == i  ; else elementMenu">
