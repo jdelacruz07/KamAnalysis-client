@@ -22,16 +22,23 @@ export class IdeaComponent implements OnInit {
   idEdit: number;
 
   constructor(private ideaService: IdeaService, @Inject(DOCUMENT) private document: any, private auth: AuthService) {
-    this.inputChange$.pipe(debounceTime(2000));
-  }
-
-  ngOnInit(): void {
-    this.inputChange$.subscribe(x => {
+    this.inputChange$.pipe(debounceTime(1000)).subscribe(x => {
       let idea: Idea = { id: undefined, idea: undefined, type: undefined };
+      console.log("En onInit", x )
       let newIdea: any = x;
       idea.idea = newIdea;
       this.addIdea(idea), () => console.log("Error "), () => console.log("Terminado")
     });
+  }
+
+  ngOnInit(): void {
+    // this.inputChange$.subscribe(x => {
+    //   let idea: Idea = { id: undefined, idea: undefined, type: undefined };
+    //   console.log("En onInit", x )
+    //   let newIdea: any = x;
+    //   idea.idea = newIdea;
+    //   this.addIdea(idea), () => console.log("Error "), () => console.log("Terminado")
+    // });
     this.getIdeas();
   }
 
@@ -39,10 +46,9 @@ export class IdeaComponent implements OnInit {
     this.auth.logout();
   }
 
-
-
   inputChange($event) {
     this.inputChange$.next($event);
+    console.log("Pasas muy rapido", $event);
   }
 
   addIdea(idea) {

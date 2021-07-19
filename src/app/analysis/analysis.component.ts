@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { trigger, style, animate, transition, query, stagger } from '@angular/animations';
+import { trigger, style, animate, transition, query, stagger, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import { StrategyService } from '../strategy.service';
 
@@ -16,7 +16,20 @@ import { StrategyService } from '../strategy.service';
         ]), { optional: true }),
       ])
     ]),
-  ]
+    trigger('contentAnimation', [
+      state('stateActive', style({ transform: 'translate(1%, -2%)', color: "#daf13e", opacity: 1, })),
+      state('stateInactive', style({ transform: 'translate(0%, 0%)', color: "rgb(157, 217, 219)", opacity: 1 })),
+      transition('*=>stateActive', [animate('.3s ease-in')]),
+      transition('stateActive=>stateInactive', [animate('.3s ease-in')]),
+    ]),
+    trigger('zoomAnimation', [
+      state('zoomActive', style({ transform: 'scale(1.2)', color: "#daf13e", opacity: 1, })),
+      state('zoomInactive', style({ transform: 'translate(0%, 0%)', opacity: 1 })),
+      transition('*=>zoomActive', [animate('.3s ease-in')]),
+      transition('zoomActive=>zoomInactive', [animate('.3s ease-in'),]),
+    ]),
+  ],
+
 })
 export class AnalysisComponent implements OnInit, OnChanges {
 
@@ -24,7 +37,11 @@ export class AnalysisComponent implements OnInit, OnChanges {
   @Input() onlyOneMarket;
   @Output() showResponse: EventEmitter<string> = new EventEmitter();
 
-  imgAnimation = 'inImg';
+  imgState = 'inImg';
+  contentState = '';
+  zoomState = 'zoomInactive';
+  // contentAnimation = 'stateInactive';
+
   share: Strategy;
   performanceRisk: number;
   isActiveDetails: boolean;
@@ -46,6 +63,20 @@ export class AnalysisComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+  }
+
+  zoom() {
+    this.zoomState == "zoomInactive" ? this.zoomState = "zoomActive" : this.zoomState = "zoomInactive";
+    // if (this.zoomState == "zoomInactive") {
+    //   this.zoomState = "zoomActive"
+    // } else {
+    //   this.zoomState = "zoomInactive"
+    // }
+    console.log("Estado de la animacion zomm", this.zoomState)
+  }
+
+  animate(state) {
+    this.contentState = state;
   }
 
   toOneMarket(market) {

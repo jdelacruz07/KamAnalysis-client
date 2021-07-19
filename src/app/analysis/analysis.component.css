@@ -18,17 +18,21 @@ main {
   margin-bottom: 15px;
 }
 
-.nameAsset {
-  color: cadetblue;
-}
-
 button {
   /* width: 100%; */
   margin-right: 5px;
 }
 
+.nameAsset {
+  color: cadetblue;
+}
+
 .wrap-button {
   width: 85px;
+}
+
+.wrap-img-head {
+  overflow: hidden;
 }
 
 .img-strategy-head {
@@ -36,9 +40,8 @@ button {
   margin-bottom: 10px;
 }
 
-.wrap-strategy-content:hover {
+.wrap-strategy-content {
   color: cadetblue;
-  /* color: royalblue; */
   cursor: pointer;
 
 }
