@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AuthService, Credentials } from '../auth.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
@@ -43,10 +43,14 @@ export class LoginComponent implements OnInit {
   password: string;
   user: string;
   sesionError = "continue";
+  message: string;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    let session: any = [];
+    session = document.cookie
+    console.log("Estas son las sesiones ", session)
     this.verifyUser();
   }
 
@@ -59,12 +63,21 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.sesionError = "continue";
     let credentials: Credentials = { user: this.user, password: this.password }
-    this.auth.login(credentials).subscribe(() => {
+    this.auth.login(credentials).subscribe((reply: HttpResponse<any>) => {
+      console.log("Respuesta del back ", reply)
       this.auth.isAuthenticate = true;
       this.router.navigate([''])
-    }, error => {
-      this.sesionError = "error";
-      console.log("El error es ", error)
+    }, (error: Response) => {
+      if (error.status == 401) {
+        this.message = "Usuario no existe"
+        this.sesionError = 'error'
+        console.log("El error en login  ", this.message)
+      }
+      if (error.status == 403) {
+        this.message = "Password incorrecta"
+        this.sesionError = 'error'
+        console.log("El error en login  ", this.message)
+      }
     });
   }
 

@@ -11,8 +11,9 @@ export class GapService {
   constructor(private http: HttpClient) { }
 
   addGap(gap) {
+    console.log("Agregar gap nuevo ", gap)
     const httpOptions = this.configHeader();
-    return this.http.post(this.gapUrl, gap, httpOptions);
+    return this.http.post(`${this.gapUrl}/add`, gap, httpOptions);
   }
 
   getGaps(page, size) {
@@ -26,12 +27,13 @@ export class GapService {
   }
 
   configHeader() {
-    const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
+    const XSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
     const httpOptions = {
       headers: new HttpHeaders({
+        'X-XSRF-TOKEN': XSRF_TOKEN,
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': CSRF_TOKEN
-      })
+        }),
+      // }), withCredentials: true,
     }
     return httpOptions;
   }

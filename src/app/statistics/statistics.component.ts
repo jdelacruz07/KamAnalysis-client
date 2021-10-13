@@ -40,7 +40,7 @@ import { GapService } from '../gap.service';
 export class StatisticsComponent implements OnInit {
 
   gapForm: FormGroup;
-  gapHistory: any[];
+  gapHistory: any;
   percentage: number = 0;
   gapError = null;
   menuDisplay = [];
@@ -54,7 +54,7 @@ export class StatisticsComponent implements OnInit {
     const dateLength = 10;
     let todayDate = new Date().toISOString().substring(0, dateLength);
     this.gapForm = this.formBuilder.group({
-      gapClose: ['No', Validators.required],
+      isClose: ['No', Validators.required],
       dateSelected: [todayDate, Validators.required]
     });
   }
@@ -65,7 +65,8 @@ export class StatisticsComponent implements OnInit {
   }
 
   isAuthenticated() {
-    return this.isAuthenticate = this.auth.authenticated();
+    this.isAuthenticate = this.auth.authenticated();
+    return this.isAuthenticate
   }
 
   onChangePage(i) {
@@ -84,8 +85,9 @@ export class StatisticsComponent implements OnInit {
   deleteGap(id, index) {
     this.animationList = "delete";
     this.gapError = null;
-    this.gapService.deleteGap(id).subscribe(() => {
+    this.gapService.deleteGap(id).subscribe((reply) => {
       this.gapHistory.splice(index, 1);
+      this.updatePercentage();
     });
   }
 
@@ -94,9 +96,10 @@ export class StatisticsComponent implements OnInit {
     this.animationList = "add";
     this.gapError = null;
     this.gapService.addGap(gap).subscribe(newGap => {
+      console.log("Se agrega correctamente gap: ", newGap)
       this.gapForm.reset();
-      this.updatePercentage();
       this.gapHistory.unshift(newGap);
+      this.updatePercentage();
     }, (error: Response) => {
       console.log("El error es: ", error.status)
       if (error.status === 401) {
@@ -113,7 +116,12 @@ export class StatisticsComponent implements OnInit {
   getGaps(pageSelect) {
     let size = 20;
     this.gapService.getGaps(pageSelect, size).subscribe((gaps: Pageable) => {
-      this.gapHistory = gaps.content;
+      console.log("Este el contenido ", gaps);
+      if (gaps.content == undefined) {
+        this.gapHistory = gaps;
+      } else {
+        this.gapHistory = gaps.content;
+      }
       let totalPages = gaps.totalPages;
       this.updatePercentage();
       this.getMenuGaps(totalPages)
@@ -124,21 +132,19 @@ export class StatisticsComponent implements OnInit {
     let total = 0;
     let gapclose = 0;
     this.gapHistory.forEach(gap => {
-      if (gap.gapClose == 'Si') {
+      if (gap.isClose == 'Si') {
         gapclose++;
-        total++;
-      } else {
-        total++;
       }
-      this.percentage = gapclose / total;
+      total++;
     });
+    this.percentage = gapclose / total;
   }
 
 }
 
 export interface Gap {
   id: string;
-  gapIsClose: string;
+  isClose: string;
   dateSelected: Date;
 }
 

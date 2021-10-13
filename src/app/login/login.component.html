@@ -10,6 +10,8 @@
         <input placeholder="Password" type="password" class="form-control" required name="password"
             [(ngModel)]="password">
     </div>
+    <span>{{message}}</span>
     <button [@login]="sesionError" class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Iniciar
         sesión</button>
+
 </form>
