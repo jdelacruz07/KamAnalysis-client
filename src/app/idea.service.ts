@@ -6,22 +6,25 @@ import { Strategy } from './analysis/analysis.component';
 import { Idea } from './idea/idea.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IdeaService {
-  ideaUrl = environment.url + "idea";
-  size: string = "100";
+  ideaUrl = environment.url + 'idea';
+  size: string = '100';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addStrategy(idea: Idea) {
     const httpOptions = this.configHeader();
-    return this.http.post<Idea>(this.ideaUrl, idea, httpOptions)
-      .pipe(catchError(async (error) => console.log("Error en el add", error)));
+    return this.http
+      .post<Idea>(this.ideaUrl, idea, httpOptions)
+      .pipe(catchError(async (error) => console.log('Error en el add', error)));
   }
 
   getIdeas() {
-    return this.http.get(this.ideaUrl + `?size=${this.size}`, { observe: 'response' });
+    return this.http.get(this.ideaUrl + `?size=${this.size}`, {
+      observe: 'response',
+    });
   }
 
   updateidea(idea: Idea) {
@@ -32,18 +35,23 @@ export class IdeaService {
   deleteIdea(id) {
     const url = `${this.ideaUrl}/${id}`;
     const httpOptions = this.configHeader();
-    return this.http.delete(url, httpOptions)
-      .pipe(catchError(async (error) => console.log("Error en el delete", error)));
+    return this.http
+      .delete(url, httpOptions)
+      .pipe(
+        catchError(async (error) => console.log('Error en el delete', error))
+      );
   }
 
   configHeader() {
-    const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
+    const CSRF_TOKEN = document.cookie.match(
+      new RegExp(`XSRF-TOKEN=([^;]+)`)
+    )[1];
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': CSRF_TOKEN
-      })
-    }
+        'X-XSRF-TOKEN': CSRF_TOKEN,
+      }),
+    };
     return httpOptions;
   }
 }

@@ -4,30 +4,37 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-performance-risk',
   templateUrl: './performance-risk.component.html',
-  styleUrls: ['./performance-risk.component.css']
+  styleUrls: ['./performance-risk.component.css'],
 })
-
 export class PerformanceRiskComponent implements OnInit {
   performanceRisk: number;
   ratioForm: FormGroup;
-  risk = { stop: 0, buy: 0, profit: 0, risk: 0 }
+  risk = { stop: 0, buy: 0, profit: 0, risk: 0 };
 
-  @ViewChild("stopLoss") stopLoss: ElementRef;
-  @ViewChild("buySell") buySell: ElementRef;
-  @ViewChild("takeProfit") takeProfit: ElementRef;
+  @ViewChild('stopLoss') stopLoss: ElementRef;
+  @ViewChild('buySell') buySell: ElementRef;
+  @ViewChild('takeProfit') takeProfit: ElementRef;
 
   newStrategy = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.ratioForm = formBuilder.group({
-      stopLoss: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]],
-      buySell: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]],
-      takeProfit: ['', [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required]]
-    })
+      stopLoss: [
+        '',
+        [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required],
+      ],
+      buySell: [
+        '',
+        [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required],
+      ],
+      takeProfit: [
+        '',
+        [Validators.pattern('^[0-9]+([.][0-9]+)?$'), Validators.required],
+      ],
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeForm() {
     this.newStrategy = false;
@@ -38,10 +45,10 @@ export class PerformanceRiskComponent implements OnInit {
   }
 
   onChangeValue(nextInput) {
-    if (nextInput == "buySell") {
+    if (nextInput == 'buySell') {
       this.buySell.nativeElement.focus();
     } else {
-      if (nextInput == "profit") {
+      if (nextInput == 'profit') {
         this.takeProfit.nativeElement.focus();
       } else {
         this.stopLoss.nativeElement.focus();
@@ -54,11 +61,15 @@ export class PerformanceRiskComponent implements OnInit {
     let buySell = this.ratioForm.value.buySell;
     let takeProfit = this.ratioForm.value.takeProfit;
     if (takeProfit >= 0 && buySell >= 0 && stopLoss >= 0) {
-      this.performanceRisk = (takeProfit - buySell) / (buySell - stopLoss)
-      this.risk = { stop: stopLoss, buy: buySell, profit: takeProfit, risk: this.performanceRisk }
+      this.performanceRisk = (takeProfit - buySell) / (buySell - stopLoss);
+      this.risk = {
+        stop: stopLoss,
+        buy: buySell,
+        profit: takeProfit,
+        risk: this.performanceRisk,
+      };
     } else {
       this.performanceRisk = null;
     }
   }
-
 }

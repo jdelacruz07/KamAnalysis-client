@@ -1,33 +1,34 @@
 .container {
-    margin-top: 0px ;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  margin-top: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .container .mat-drawer {
-    min-width:200px;
+  min-width: 200px;
 }
 
 .container .mat-drawer .mat-button {
-    width: 100%;
-    display: block;
-    text-align: left;
+  width: 100%;
+  display: block;
+  text-align: left;
 }
 
-.toolbar{
-    display: flex;
-    justify-content: space-between;
-    background-color: whitesmoke;
-    color: #e01e47;
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  color: #e01e47;
 }
 
 .mat-button {
-    color: #daf13e;
+  color: #daf13e;
 }
 
-.title, .time {
-    cursor: pointer;
+.title,
+.time {
+  cursor: pointer;
 }

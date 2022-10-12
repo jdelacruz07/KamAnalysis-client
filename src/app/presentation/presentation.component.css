@@ -1,19 +1,19 @@
 .container {
-    display: flex;
+  display: flex;
 }
 
-img{
-    max-width: 100%;
+img {
+  max-width: 100%;
 }
 
 .bear .bull {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .bear img:hover {
-    border: 5px solid green;
+  border: 5px solid green;
 }
 
 .bull img:hover {
-    border: 5px solid red;
+  border: 5px solid red;
 }

@@ -14,7 +14,7 @@ h2 {
 }
 
 main {
-  border-bottom: .1rem solid #dadada;
+  border-bottom: 0.1rem solid #dadada;
   margin-bottom: 15px;
 }
 
@@ -43,7 +43,6 @@ button {
 .wrap-strategy-content {
   color: cadetblue;
   cursor: pointer;
-
 }
 
 .strategy-rest {
@@ -60,34 +59,31 @@ button {
   max-width: 160px;
 }
 
-
-@media (min-width: 480px)  { 
-  
+@media (min-width: 480px) {
   .strategy-head {
     max-width: 100%;
     display: flex;
     margin-bottom: 15px;
   }
-  
+
   .strategy-head .wrap-img-head {
     margin-right: 5px;
   }
-  
+
   .wrap-strategies {
     display: flex;
     padding: 0;
   }
-  
+
   .strategy-rest {
     display: block;
     margin-right: 15px;
   }
-  
+
   .img-rest {
     max-width: 100%;
     margin-bottom: 5px;
   }
-  
 }
 
 /* ******* share *********** */
@@ -111,13 +107,9 @@ button {
   margin-bottom: 5px;
 }
 
-@media (min-width: 480px)  { 
+@media (min-width: 480px) {
   .share {
     max-width: 75%;
     margin: 0 auto;
   }
 }
-
-
-
-

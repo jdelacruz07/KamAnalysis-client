@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AuthService, Credentials } from '../auth.service';
 import { Router } from '@angular/router';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-login',
@@ -10,47 +17,57 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
   styleUrls: ['./login.component.css'],
   animations: [
     trigger('login', [
-      state('continue', style({
-        opacity: 1,
-        color: '#daf13e',
-      })),
-      state('error', style({
-        opacity: 1,
-        color: 'red',
-      })),
+      state(
+        'continue',
+        style({
+          opacity: 1,
+          color: '#daf13e',
+        })
+      ),
+      state(
+        'error',
+        style({
+          opacity: 1,
+          color: 'red',
+        })
+      ),
       transition('* => error', [
-        animate('700ms ease-in', keyframes([
-          style({ transform: 'translateX(-10px)', offset: 0 }),
-          style({ transform: 'translateX(10px)', offset: .1 }),
-          style({ transform: 'translateX(-10px)', offset: .2 }),
-          style({ transform: 'translateX(10px)', offset: .3 }),
-          style({ transform: 'translateX(-10px)', offset: .4 }),
-          style({ transform: 'translateX(10px)', offset: .5 }),
-          style({ transform: 'translateX(-10px)', offset: .6 }),
-          style({ transform: 'translateX(10px)', offset: .7 }),
-          style({ transform: 'translateX(-10px)', offset: .8 }),
-          style({ transform: 'translateX(10px)', offset: .9 }),
-          style({ transform: 'translateX(-10px)', offset: 1 }),
-          style({ color: "red", offset: 1 }),
-        ]))
+        animate(
+          '700ms ease-in',
+          keyframes([
+            style({ transform: 'translateX(-10px)', offset: 0 }),
+            style({ transform: 'translateX(10px)', offset: 0.1 }),
+            style({ transform: 'translateX(-10px)', offset: 0.2 }),
+            style({ transform: 'translateX(10px)', offset: 0.3 }),
+            style({ transform: 'translateX(-10px)', offset: 0.4 }),
+            style({ transform: 'translateX(10px)', offset: 0.5 }),
+            style({ transform: 'translateX(-10px)', offset: 0.6 }),
+            style({ transform: 'translateX(10px)', offset: 0.7 }),
+            style({ transform: 'translateX(-10px)', offset: 0.8 }),
+            style({ transform: 'translateX(10px)', offset: 0.9 }),
+            style({ transform: 'translateX(-10px)', offset: 1 }),
+            style({ color: 'red', offset: 1 }),
+          ])
+        ),
       ]),
     ]),
-
-  ]
+  ],
 })
 export class LoginComponent implements OnInit {
-
   password: string;
   user: string;
-  sesionError = "continue";
+  sesionError = 'continue';
   message: string;
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     let session: any = [];
-    session = document.cookie
-    console.log("Estas son las sesiones ", session)
+    session = document.cookie;
     this.verifyUser();
   }
 
@@ -61,28 +78,30 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.sesionError = "continue";
-    let credentials: Credentials = { user: this.user, password: this.password }
-    this.auth.login(credentials).subscribe((reply: HttpResponse<any>) => {
-      console.log("Respuesta del back ", reply)
-      this.auth.isAuthenticate = true;
-      this.router.navigate([''])
-    }, (error: Response) => {
-      if (error.status == 401) {
-        this.message = "Usuario no existe"
-        this.sesionError = 'error'
-        console.log("El error en login  ", this.message)
+    this.sesionError = 'continue';
+    let credentials: Credentials = { user: this.user, password: this.password };
+    this.auth.login(credentials).subscribe(
+      (reply: HttpResponse<any>) => {
+        console.log('Respuesta del back en login ', reply);
+        this.auth.isAuthenticate = true;
+        this.router.navigate(['']);
+      },
+      (error: Response) => {
+        if (error.status == 401) {
+          this.message = 'Usuario no existe';
+          this.sesionError = 'error';
+          console.log('El error en login  ', this.message);
+        }
+        if (error.status == 403) {
+          this.message = 'Password incorrecta';
+          this.sesionError = 'error';
+          console.log('El error en login  ', this.message);
+        }
       }
-      if (error.status == 403) {
-        this.message = "Password incorrecta"
-        this.sesionError = 'error'
-        console.log("El error en login  ", this.message)
-      }
-    });
+    );
   }
 
   logout() {
     this.auth.logout();
   }
-
 }

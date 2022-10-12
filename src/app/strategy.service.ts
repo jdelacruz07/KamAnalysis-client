@@ -5,22 +5,23 @@ import { Strategy } from './analysis/analysis.component';
 import { Pageable } from './statistics/statistics.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StrategyService {
+  url = environment.url + 'strategy';
 
-  url = environment.url + "strategy";
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addStrategy(strategy: Strategy) {
-    const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
+    const CSRF_TOKEN = document.cookie.match(
+      new RegExp(`XSRF-TOKEN=([^;]+)`)
+    )[1];
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': CSRF_TOKEN
-      })
-    }
+        'X-XSRF-TOKEN': CSRF_TOKEN,
+      }),
+    };
     return this.http.post<Strategy>(this.url, strategy, httpOptions);
   }
 
@@ -34,7 +35,6 @@ export class StrategyService {
   }
 
   deleteStrategy(id) {
-    return this.http.delete<Strategy>("${this.url}/${id}");
+    return this.http.delete<Strategy>('${this.url}/${id}');
   }
-
 }

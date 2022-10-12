@@ -1,5 +1,21 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { trigger, style, animate, transition, query, stagger, state } from '@angular/animations';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  query,
+  stagger,
+  state,
+} from '@angular/animations';
 import { Router } from '@angular/router';
 import { StrategyService } from '../strategy.service';
 
@@ -11,28 +27,44 @@ import { StrategyService } from '../strategy.service';
     trigger('imgAnimation', [
       transition('* => inImg', [
         query('img', style({ opacity: 0 })),
-        query('img', stagger('300ms', [
-          animate('2000ms', style({ opacity: 1 })),
-        ]), { optional: true }),
-      ])
+        query(
+          'img',
+          stagger('300ms', [animate('2000ms', style({ opacity: 1 }))]),
+          { optional: true }
+        ),
+      ]),
     ]),
     trigger('contentAnimation', [
-      state('stateActive', style({ transform: 'translate(1%, -2%)', color: "#daf13e", opacity: 1, })),
-      state('stateInactive', style({ transform: 'translate(0%, 0%)', color: "rgb(157, 217, 219)", opacity: 1 })),
+      state(
+        'stateActive',
+        style({ transform: 'translate(1%, -2%)', color: '#daf13e', opacity: 1 })
+      ),
+      state(
+        'stateInactive',
+        style({
+          transform: 'translate(0%, 0%)',
+          color: 'rgb(157, 217, 219)',
+          opacity: 1,
+        })
+      ),
       transition('*=>stateActive', [animate('.3s ease-in')]),
       transition('stateActive=>stateInactive', [animate('.3s ease-in')]),
     ]),
     trigger('zoomAnimation', [
-      state('zoomActive', style({ transform: 'scale(1.2)', color: "#daf13e", opacity: 1, })),
-      state('zoomInactive', style({ transform: 'translate(0%, 0%)', opacity: 1 })),
+      state(
+        'zoomActive',
+        style({ transform: 'scale(1.2)', color: '#daf13e', opacity: 1 })
+      ),
+      state(
+        'zoomInactive',
+        style({ transform: 'translate(0%, 0%)', opacity: 1 })
+      ),
       transition('*=>zoomActive', [animate('.3s ease-in')]),
-      transition('zoomActive=>zoomInactive', [animate('.3s ease-in'),]),
+      transition('zoomActive=>zoomInactive', [animate('.3s ease-in')]),
     ]),
   ],
-
 })
 export class AnalysisComponent implements OnInit, OnChanges {
-
   @Input() strategies: Strategy[];
   @Input() onlyOneMarket;
   @Output() showResponse: EventEmitter<string> = new EventEmitter();
@@ -49,8 +81,10 @@ export class AnalysisComponent implements OnInit, OnChanges {
   strategy: Strategy[] = [];
   typeOfMarket: string;
 
-  constructor(private strategyService: StrategyService, private router: Router) {
-  }
+  constructor(
+    private strategyService: StrategyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     let strategyPrincipal = this.strategies[0];
@@ -62,17 +96,18 @@ export class AnalysisComponent implements OnInit, OnChanges {
     this.translateName();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   zoom() {
-    this.zoomState == "zoomInactive" ? this.zoomState = "zoomActive" : this.zoomState = "zoomInactive";
+    this.zoomState == 'zoomInactive'
+      ? (this.zoomState = 'zoomActive')
+      : (this.zoomState = 'zoomInactive');
     // if (this.zoomState == "zoomInactive") {
     //   this.zoomState = "zoomActive"
     // } else {
     //   this.zoomState = "zoomInactive"
     // }
-    console.log("Estado de la animacion zomm", this.zoomState)
+    console.log('Estado de la animacion zomm', this.zoomState);
   }
 
   animate(state) {
@@ -88,30 +123,30 @@ export class AnalysisComponent implements OnInit, OnChanges {
   backToAllMarkets() {
     this.onlyOneMarket = false;
     this.isActiveDetails = false;
-    this.showResponse.emit("all");
+    this.showResponse.emit('all');
   }
 
   getDetails(asset: Strategy) {
     this.showResponse.emit(asset.market);
     this.isActiveDetails = true;
     this.share = asset;
-    this.performanceRisk = (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss);
+    this.performanceRisk =
+      (asset.takeProfit - asset.buySell) / (asset.buySell - asset.stopLoss);
   }
 
   translateName() {
     if (this.typeOfMarket === 'stocks') {
-      this.typeOfMarket = 'Acciones'
+      this.typeOfMarket = 'Acciones';
     } else {
       if (this.typeOfMarket === 'commodities') {
-        this.typeOfMarket = 'Materias primas'
+        this.typeOfMarket = 'Materias primas';
       } else {
         if (this.typeOfMarket === 'forex') {
-          this.typeOfMarket = 'Divisas'
+          this.typeOfMarket = 'Divisas';
         }
       }
     }
   }
-
 }
 
 export interface DataCrypto {
@@ -137,4 +172,3 @@ export interface Strategy {
   altImg: string;
   createdAt: Date;
 }
-

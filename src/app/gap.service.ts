@@ -3,21 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GapService {
-  gapUrl = environment.url + "gap";
+  gapUrl = environment.url + 'gap';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addGap(gap) {
-    console.log("Agregar gap nuevo ", gap)
     const httpOptions = this.configHeader();
     return this.http.post(`${this.gapUrl}/add`, gap, httpOptions);
   }
 
   getGaps(page, size) {
-    let url = `${this.gapUrl}?page=${page}&size=${size}`
+    let url = `${this.gapUrl}?page=${page}&size=${size}`;
     return this.http.get(url);
   }
 
@@ -27,15 +26,16 @@ export class GapService {
   }
 
   configHeader() {
-    const XSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
+    const XSRF_TOKEN = document.cookie.match(
+      new RegExp(`XSRF-TOKEN=([^;]+)`)
+    )[1];
     const httpOptions = {
       headers: new HttpHeaders({
         'X-XSRF-TOKEN': XSRF_TOKEN,
         'Content-Type': 'application/json',
-        }),
+      }),
       // }), withCredentials: true,
-    }
+    };
     return httpOptions;
   }
-
 }

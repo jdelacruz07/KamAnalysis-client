@@ -1,91 +1,91 @@
 .container {
-    max-width: 90%;
-    height: 600px;
-    background-repeat: no-repeat;
-    background-image: url('../../assets/img/bull_02.jpg'); 
-    /* background-image: url(https://master.d2ggfysibfn5i5.amplifyapp.com/assets/images/reloj.jpeg);  */
-    background-size: cover;
-    /* background-size: 100% 100%; */
-    margin-top: 15px;
+  max-width: 90%;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-image: url("../../assets/img/bull_02.jpg");
+  /* background-image: url(https://master.d2ggfysibfn5i5.amplifyapp.com/assets/images/reloj.jpeg);  */
+  background-size: cover;
+  /* background-size: 100% 100%; */
+  margin-top: 15px;
 }
 
 h1 {
-    color: #daf13e;
-    background-color: darkblue;
-    opacity: .7;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 10px;
+  color: #daf13e;
+  background-color: darkblue;
+  opacity: 0.7;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 h2 {
-    text-align: center;  
-    color: darkblue;
-    background-color: #fff;
-    opacity: .7;
-    border-radius: 5px;
+  text-align: center;
+  color: darkblue;
+  background-color: #fff;
+  opacity: 0.7;
+  border-radius: 5px;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 label {
-    color:  darkblue;
-    opacity: .9;
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 5px;
+  color: darkblue;
+  opacity: 0.9;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 input {
-    max-width: 120px;
-    text-align: center;
-    color: darkblue;
-    opacity: .9;
-    padding: 5px;
-    border-radius: 10px;
-    border: 1px solid darkblue;
-    margin-left: 5px;
+  max-width: 120px;
+  text-align: center;
+  color: darkblue;
+  opacity: 0.9;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid darkblue;
+  margin-left: 5px;
 }
 
 input::placeholder {
-    color: darkblue;
+  color: darkblue;
 }
 
 .wrap-fields {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .error {
-    text-align: center;
-    color: rgb(235, 82, 82);
-    margin-top: 5px;
+  text-align: center;
+  color: rgb(235, 82, 82);
+  margin-top: 5px;
 }
 
 .restart {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .downContainer {
-    display: flex;
-    justify-content: center;
-    margin: 15px; 
+  display: flex;
+  justify-content: center;
+  margin: 15px;
 }
 
 .countDown {
-    width: 120px;
-    height: 120px;
-    line-height: 120px;
-    text-align: center;
-    font-size: 30px;
-    color: darkblue;
-    background-color: #fff;
-    opacity: .7;
-    border: 1px solid darkblue;
-    border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  font-size: 30px;
+  color: darkblue;
+  background-color: #fff;
+  opacity: 0.7;
+  border: 1px solid darkblue;
+  border-radius: 50%;
 }

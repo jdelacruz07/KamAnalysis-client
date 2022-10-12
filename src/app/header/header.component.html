@@ -1,29 +1,68 @@
 <mat-drawer-container class="container">
-    <mat-drawer #drawer class="sidenav">
-        <button mat-button name="inicio" routerLink="/" (click)="drawer.toggle()">Inicio</button>
-        <button class="mat-button" name="risk/performance" mat-button routerLink="/rendimiento-riesgo"
-        (click)="drawer.toggle()">Rendimiento/Riesgo</button>
-        <button class="mat-button" name="ideas" mat-button routerLink="/ideas" (click)="drawer.toggle()">Ideas</button>
-        <button class="mat-button" name="statistics" mat-button routerLink="/estadisticas"
-            (click)="drawer.toggle()">Estadisticas</button>
-        <button class="mat-button" name="login" mat-button routerLink="/login" (click)="drawer.toggle()">Login</button>
-        <!--
+  <mat-drawer #drawer class="sidenav">
+    <button mat-button name="inicio" routerLink="/" (click)="drawer.toggle()">
+      Inicio
+    </button>
+    <button
+      class="mat-button"
+      name="risk/performance"
+      mat-button
+      routerLink="/rendimiento-riesgo"
+      (click)="drawer.toggle()"
+    >
+      Rendimiento/Riesgo
+    </button>
+    <button
+      class="mat-button"
+      name="ideas"
+      mat-button
+      routerLink="/ideas"
+      (click)="drawer.toggle()"
+    >
+      Ideas
+    </button>
+    <button
+      class="mat-button"
+      name="statistics"
+      mat-button
+      routerLink="/estadisticas"
+      (click)="drawer.toggle()"
+    >
+      Estadisticas
+    </button>
+    <button
+      class="mat-button"
+      name="login"
+      mat-button
+      routerLink="/login"
+      (click)="drawer.toggle()"
+    >
+      Login
+    </button>
+    <!--
      <button class="mat-button" name="admin" mat-button routerLink="new-libreta"
          (click)="drawer.toggle()">Curriculum</button>
  -->
-    </mat-drawer>
+  </mat-drawer>
 
-    <div class="sidenav-content">
-        <mat-toolbar color="primary">
-            <mat-toolbar-row class="toolbar">
-                <button name="menu" aria-hidden="true" class="nav-link1" mat-icon-button (click)="drawer.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
-                <div class="title" routerLink="/">KamAnalysis</div>
-                <div class="time" routerLink="timer">{{hours}}:{{minutes}}:{{seconds}}</div>
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <router-outlet></router-outlet>
-    </div>
-
+  <div class="sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="toolbar">
+        <button
+          name="menu"
+          aria-hidden="true"
+          class="nav-link1"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="title" routerLink="/">KamAnalysis</div>
+        <div class="time" routerLink="timer">
+          {{ hours }}:{{ minutes }}:{{ seconds }}
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
 </mat-drawer-container>

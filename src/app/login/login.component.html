@@ -1,17 +1,35 @@
 <h1>Login</h1>
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div class="input-text">
-        <!-- <label for="user">Usuario</label> -->
-        <input placeholder="Username" type="text" class="form-control" required name="user" [(ngModel)]="user">
-    </div>
-    <br>
-    <div class="input-text">
-        <!-- <label for="password">Password</label> -->
-        <input placeholder="Password" type="password" class="form-control" required name="password"
-            [(ngModel)]="password">
-    </div>
-    <span>{{message}}</span>
-    <button [@login]="sesionError" class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Iniciar
-        sesión</button>
-
+  <div class="input-text">
+    <!-- <label for="user">Usuario</label> -->
+    <input
+      placeholder="Username"
+      type="text"
+      class="form-control"
+      required
+      name="user"
+      [(ngModel)]="user"
+    />
+  </div>
+  <br />
+  <div class="input-text">
+    <!-- <label for="password">Password</label> -->
+    <input
+      placeholder="Password"
+      type="password"
+      class="form-control"
+      required
+      name="password"
+      [(ngModel)]="password"
+    />
+  </div>
+  <span>{{ message }}</span>
+  <button
+    [@login]="sesionError"
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="!loginForm.valid"
+  >
+    Iniciar sesión
+  </button>
 </form>

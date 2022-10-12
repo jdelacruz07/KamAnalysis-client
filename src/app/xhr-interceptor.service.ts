@@ -1,15 +1,18 @@
-import { HttpRequest, HttpHandler, HttpHeaders } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class XhrInterceptorService {
-
+export class XhrInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-
     const xhr = req.clone({
-      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest'),
     });
 
     return next.handle(xhr);

@@ -28,7 +28,7 @@ hr {
 
 .ideas-list {
   text-align: center;
-  color:#daf13e
+  color: #daf13e;
 }
 
 .bi {
@@ -47,7 +47,7 @@ hr {
 .idea-label {
   flex: 0 1 auto;
   text-align: right;
-  color: #daf13e;;
+  color: #daf13e;
   margin: 0 5px 0 0;
 }
 
@@ -55,7 +55,7 @@ hr {
   flex: 0 1 50%;
   text-align: center;
 }
-  
+
 .ideas {
   display: flex;
   justify-content: space-between;
@@ -88,7 +88,7 @@ hr {
   font-size: 14px;
   color: #daf13e;
   background-color: transparent;
-  border: 1px solid green ;
+  border: 1px solid green;
   margin: 0 10px 0 10px;
 }
 
@@ -111,7 +111,7 @@ li {
   vertical-align: top;
   margin: 0 0px 25px 0px;
 }
-  
+
 .box-list {
   max-width: 400px;
   margin: 0 auto;
@@ -131,16 +131,16 @@ li {
   border: solid 1px green;
   overflow: hidden;
 }
-  
+
 .box-item {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   box-sizing: border-box;
-  color:green;
+  color: green;
   font-size: 14px;
-  background:whitesmoke;
+  background: whitesmoke;
   padding: 10px 10px;
   border-bottom: solid 1px green;
   cursor: move;
@@ -151,7 +151,7 @@ li {
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  color:green;
+  color: green;
   font-size: 14px;
   padding: 20px 10px;
   border-bottom: solid 1px green;
@@ -166,27 +166,26 @@ li {
 .box-item2:last-child {
   border-bottom: solid 0px green;
 }
-  
+
 .cdk-drag-preview {
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-              0 8px 10px 1px rgba(0, 0, 0, 0.14),
-              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-  
+
 .cdk-drag-placeholder {
   opacity: 0;
 }
-  
+
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-  
+
 .example-box:last-child {
   border: none;
 }
-  
+
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

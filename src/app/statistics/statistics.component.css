@@ -1,130 +1,127 @@
 h1 {
-    max-width: 85%;
-    margin: 10px auto;
-    text-align: center;
-    /* margin-top: 10px; */
+  max-width: 85%;
+  margin: 10px auto;
+  text-align: center;
+  /* margin-top: 10px; */
 }
 
 dd {
-    text-align: justify;
+  text-align: justify;
 }
 
 p {
-    text-align: center;
+  text-align: center;
 }
 
 label {
-    width: 115px;
-    text-align: right;
+  width: 115px;
+  text-align: right;
 }
 
 table {
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 25px 5px;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 25px 5px;
 }
 
 form {
-    max-width: 85%;
-    margin: 0 auto;
-    padding-bottom: 15px;
-    border-bottom: .1rem solid #dadada ;
-    margin-top: 15px;
+  max-width: 85%;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  border-bottom: 0.1rem solid #dadada;
+  margin-top: 15px;
 }
 
 input {
-    margin: 0 3px 0 8px;
+  margin: 0 3px 0 8px;
 }
 
 .header {
-    max-width: 85%;
-    margin: 0 auto;
-    border-bottom: .1rem solid #dadada;
+  max-width: 85%;
+  margin: 0 auto;
+  border-bottom: 0.1rem solid #dadada;
 }
 
 .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .gap-error {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
 
 .data-gap {
-    color: #007bff;
+  color: #007bff;
 }
 
 .form-fields {
-    max-width: 85%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left; 
-    align-items: baseline;
+  max-width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: baseline;
 }
 
 .form-field {
-    display: flex;
-    /* flex-wrap: wrap; */
-    align-items: baseline;
+  display: flex;
+  /* flex-wrap: wrap; */
+  align-items: baseline;
 }
 
 .btn-header {
-    display: flex;
+  display: flex;
 }
 
 .spacer {
-    flex: 0 1 125px;
-    margin-right: 5px;
+  flex: 0 1 125px;
+  margin-right: 5px;
 }
 
 .button-save {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .container {
-    color: rgb(213, 235, 20);
+  color: rgb(213, 235, 20);
 }
 
 .date {
-    width: 130px;
+  width: 130px;
 }
 
 .percentage {
-    text-align: center;
-    margin: 10px;
+  text-align: center;
+  margin: 10px;
 }
 
 .percentage-outcome {
-    color: #28a745;
-    margin-left: 5px;
+  color: #28a745;
+  margin-left: 5px;
 }
 
 .historical {
-    text-align: center;
-    margin: 10px;
+  text-align: center;
+  margin: 10px;
 }
 
 .menu {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .element-menu {
-    flex: 0 1 auto;
-    color: chartreuse;
-    margin-right: 5px;
-    cursor: pointer;
+  flex: 0 1 auto;
+  color: chartreuse;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 @media (min-width: 480px) {
-    
-    .form-fields {
-        justify-content: space-around; 
-    }
-    
+  .form-fields {
+    justify-content: space-around;
+  }
 }
-

@@ -1,38 +1,36 @@
 h1 {
-    text-align: center;
-    color: #daf13e;
-    margin-top: 15px;
+  text-align: center;
+  color: #daf13e;
+  margin-top: 15px;
 }
 
 input {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .input-text {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 ::-webkit-input-placeholder {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    width: 50%;
-    margin: auto;
-    display: flex;
-    justify-content: center;    
-    margin-top: 15px;
-    
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 @media (min-width: 480px) {
-    button {
-        width: 25%;
-    }
-    input {
-        width: 25%;
-    }
+  button {
+    width: 25%;
+  }
+  input {
+    width: 25%;
+  }
 }
-

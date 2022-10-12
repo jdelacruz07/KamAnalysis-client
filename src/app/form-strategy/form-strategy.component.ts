@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators, } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { StrategyService } from '../strategy.service';
-
 
 @Component({
   selector: 'app-form-strategy',
@@ -27,14 +26,18 @@ export class FormStrategyComponent implements OnInit {
     takeProfit: [{ value: '' }],
     urlImg: '',
     altImg: '',
-  })
+  });
 
-  constructor(private fb: FormBuilder, private strategyService: StrategyService, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private strategyService: StrategyService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.strategyForm.get('stopLoss').setValue(this.totalRisk.stop)
-    this.strategyForm.get('buySell').setValue(this.totalRisk.buy)
-    this.strategyForm.get('takeProfit').setValue(this.totalRisk.profit)
+    this.strategyForm.get('stopLoss').setValue(this.totalRisk.stop);
+    this.strategyForm.get('buySell').setValue(this.totalRisk.buy);
+    this.strategyForm.get('takeProfit').setValue(this.totalRisk.profit);
     this.verifyAuth();
   }
 
@@ -42,14 +45,11 @@ export class FormStrategyComponent implements OnInit {
     this.isLogged = this.authService.isAuthenticate;
   }
 
-
   returnPerformanceRisk() {
     this.changeForm.emit(false);
   }
 
   sendForm(form) {
-    this.strategyService.addStrategy(form).subscribe(x => {
-    });
+    this.strategyService.addStrategy(form).subscribe((x) => {});
   }
-
 }

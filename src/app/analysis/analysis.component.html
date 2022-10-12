@@ -1,67 +1,112 @@
 <div *ngIf="!isActiveDetails">
-    <main [@imgAnimation]="imgState">
-        <h1>{{typeOfMarket}}</h1>
-        <div id="start" *ngFor="let item of strategy; let i = index">
-            <div class="strategy-head" *ngIf="i == 0 ">
-                <div class="wrap-img-head">
-                    <!-- <img class="img-strategy-head" [src]="item.urlImg" [alt]="item.altImg">  -->
-                    <img class="img-strategy-head" [src]="item.urlImg" [alt]="item.altImg" [@zoomAnimation]="zoomState"
-                        (click)="zoom()">
-                </div>
-                <div [@contentAnimation]="contentState" class="wrap-strategy-content" (click)="getDetails(item)"
-                    (mouseenter)="animate('stateActive')" (mouseleave)="animate('stateInactive')">
-                    <p>{{item.createdAt | date: 'd MMM, y'}}</p>
-                    <p>{{item.asset}} </p>
-                    <p>{{item.strategy}}</p>
-                </div>
-            </div>
+  <main [@imgAnimation]="imgState">
+    <h1>{{ typeOfMarket }}</h1>
+    <div id="start" *ngFor="let item of strategy; let i = index">
+      <div class="strategy-head" *ngIf="i == 0">
+        <div class="wrap-img-head">
+          <!-- <img class="img-strategy-head" [src]="item.urlImg" [alt]="item.altImg">  -->
+          <img
+            class="img-strategy-head"
+            [src]="item.urlImg"
+            [alt]="item.altImg"
+            [@zoomAnimation]="zoomState"
+            (click)="zoom()"
+          />
         </div>
-        <div class="wrap-strategies">
-            <div *ngFor="let item of restOfStrategies; let i = index">
-                <div class="strategy-rest">
-                    <div class="wrap-img-rest">
-                        <img class="img-rest" [src]="item.urlImg" [alt]="item.altImg">
-                    </div>
-                    <div class="wrap-strategy-content" (click)="getDetails(item)">
-                        <p>{{item.createdAt | date: 'd MMM, y'}}</p>
-                        <p class="nameAsset">{{item.asset}} </p>
-                        <p>{{item.strategy}}</p>
-                    </div>
-                </div>
-            </div>
+        <div
+          [@contentAnimation]="contentState"
+          class="wrap-strategy-content"
+          (click)="getDetails(item)"
+          (mouseenter)="animate('stateActive')"
+          (mouseleave)="animate('stateInactive')"
+        >
+          <p>{{ item.createdAt | date: "d MMM, y" }}</p>
+          <p>{{ item.asset }}</p>
+          <p>{{ item.strategy }}</p>
         </div>
-    </main>
-    <button *ngIf="onlyOneMarket" class="btn btn-secondary btn-back" (click)="backToAllMarkets()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
-        </svg>
-    </button>
+      </div>
+    </div>
+    <div class="wrap-strategies">
+      <div *ngFor="let item of restOfStrategies; let i = index">
+        <div class="strategy-rest">
+          <div class="wrap-img-rest">
+            <img class="img-rest" [src]="item.urlImg" [alt]="item.altImg" />
+          </div>
+          <div class="wrap-strategy-content" (click)="getDetails(item)">
+            <p>{{ item.createdAt | date: "d MMM, y" }}</p>
+            <p class="nameAsset">{{ item.asset }}</p>
+            <p>{{ item.strategy }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <button
+    *ngIf="onlyOneMarket"
+    class="btn btn-secondary btn-back"
+    (click)="backToAllMarkets()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-arrow-90deg-up"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+      />
+    </svg>
+  </button>
 </div>
 
-
 <div *ngIf="isActiveDetails">
-    <section class="share" *ngIf="share">
-        <div class="subMenu">
-            <button class="btn btn-primary" (click)="toOneMarket('stocks')"> Acciones</button>
-            <button class="btn btn-primary" (click)="toOneMarket('forex')"> Divisas</button>
-            <button class="btn btn-primary" (click)="toOneMarket('commodities')"> Materias primas</button>
-        </div>
-        <h2>{{share.asset}}</h2>
-        <img class="img-share" [src]="share.urlImg" [alt]="share.altImg">
-        <p *ngIf="share.position === 'short'; else long">Operativa en corto, es decir venta de: {{share.asset}}.</p>
-        <ng-template #long>Opertiva en largo, es decir compra de: {{share.asset}}. </ng-template>
-        <p>Entrada alrededor de los {{share.buySell | number: '1.0-2'}} como se muetra en
-            el grafico. Stop loss en los {{share.stopLoss | number: '1.0-2'}}, con el objetivo de los
-            {{share.takeProfit | number: '1.0-2'}}. </p>
-        <p>El ratio riesgo beneficio es de {{performanceRisk | number: '1.0-2'}} a 1.</p>
-        <button class="btn btn-secondary btn-back" (click)="backToAllMarkets()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-90deg-up" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
-            </svg>
-        </button>
-    </section>
+  <section class="share" *ngIf="share">
+    <div class="subMenu">
+      <button class="btn btn-primary" (click)="toOneMarket('stocks')">
+        Acciones
+      </button>
+      <button class="btn btn-primary" (click)="toOneMarket('forex')">
+        Divisas
+      </button>
+      <button class="btn btn-primary" (click)="toOneMarket('commodities')">
+        Materias primas
+      </button>
+    </div>
+    <h2>{{ share.asset }}</h2>
+    <img class="img-share" [src]="share.urlImg" [alt]="share.altImg" />
+    <p *ngIf="share.position === 'short'; else long">
+      Operativa en corto, es decir venta de: {{ share.asset }}.
+    </p>
+    <ng-template #long
+      >Opertiva en largo, es decir compra de: {{ share.asset }}.
+    </ng-template>
+    <p>
+      Entrada alrededor de los {{ share.buySell | number: "1.0-2" }} como se
+      muetra en el grafico. Stop loss en los
+      {{ share.stopLoss | number: "1.0-2" }}, con el objetivo de los
+      {{ share.takeProfit | number: "1.0-2" }}.
+    </p>
+    <p>
+      El ratio riesgo beneficio es de {{ performanceRisk | number: "1.0-2" }} a
+      1.
+    </p>
+    <button class="btn btn-secondary btn-back" (click)="backToAllMarkets()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-90deg-up"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+        />
+      </svg>
+    </button>
+  </section>
 </div>

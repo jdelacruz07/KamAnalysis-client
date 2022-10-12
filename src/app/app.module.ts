@@ -9,7 +9,7 @@ import { TimerComponent } from './timer/timer.component';
 import { PerformanceRiskComponent } from './performance-risk/performance-risk.component';
 
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -28,6 +28,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PresentationComponent } from './presentation/presentation.component';
 import { IdeaComponent } from './idea/idea.component';
 import { FormStrategyComponent } from './form-strategy/form-strategy.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FormStrategyComponent } from './form-strategy/form-strategy.component';
     PageNotFoundComponent,
     PresentationComponent,
     IdeaComponent,
-    FormStrategyComponent
+    FormStrategyComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +57,17 @@ import { FormStrategyComponent } from './form-strategy/form-strategy.component';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: XhrInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: XhrInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

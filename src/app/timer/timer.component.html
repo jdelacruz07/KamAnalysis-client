@@ -1,27 +1,35 @@
 <div class="container">
-    <section>
-        <div class="header">
-            <h1>Timer</h1>
-        </div>
-        <form>
-            <div class="wrap-fields">
-                <label for="time"> Introducir tiempo:</label>
-                <input type="text" id="time" placeholder="Segundos" name="time" [(ngModel)]="time"
-                    (ngModelChange)="startTimer($event)" [disabled]="!finished">
-            </div>
-        </form>
-        <div class="error" *ngIf="error">No acepta valores alfanumericos.</div>
-    </section>
-    <section>
-        <div class="downContainer">
-            <div class="countDown" *ngIf="result > 0">{{result}}</div>
-        </div>
-        <div class="restart" *ngIf="!finished && result != null">
-            <button class="btn btn-primary" (click)="restartNow()">Reiniciar</button>
-        </div>
-    </section>
-    <section>
-        <h2 *ngIf="result == 0">Finalizado timer de {{timer}} segundos a las {{endTime}}
-        </h2>
-    </section>
+  <section>
+    <div class="header">
+      <h1>Timer</h1>
+    </div>
+    <form>
+      <div class="wrap-fields">
+        <label for="time"> Introducir tiempo:</label>
+        <input
+          type="text"
+          id="time"
+          placeholder="Segundos"
+          name="time"
+          [(ngModel)]="time"
+          (ngModelChange)="startTimer($event)"
+          [disabled]="!finished"
+        />
+      </div>
+    </form>
+    <div class="error" *ngIf="error">No acepta valores alfanumericos.</div>
+  </section>
+  <section>
+    <div class="downContainer">
+      <div class="countDown" *ngIf="result > 0">{{ result }}</div>
+    </div>
+    <div class="restart" *ngIf="!finished && result != null">
+      <button class="btn btn-primary" (click)="restartNow()">Reiniciar</button>
+    </div>
+  </section>
+  <section>
+    <h2 *ngIf="result == 0">
+      Finalizado timer de {{ timer }} segundos a las {{ endTime }}
+    </h2>
+  </section>
 </div>

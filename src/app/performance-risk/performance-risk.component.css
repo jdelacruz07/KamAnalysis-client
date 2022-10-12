@@ -1,75 +1,75 @@
 h1 {
-    text-align: center;
-    color: #daf13e;
+  text-align: center;
+  color: #daf13e;
 }
 
 label {
-    width: 130px;
-    color: #daf13e;
-    text-align: right;
+  width: 130px;
+  color: #daf13e;
+  text-align: right;
 }
 
 input {
-    width: 100px;
-    color: #45a12e;
-    background-color: transparent;
-    text-align: center;
-    border: 0;
-    border-bottom: 1px solid green;
+  width: 100px;
+  color: #45a12e;
+  background-color: transparent;
+  text-align: center;
+  border: 0;
+  border-bottom: 1px solid green;
 }
 
 form {
-    padding-bottom: 15px;
-    border-bottom: .1rem solid #dadada;
+  padding-bottom: 15px;
+  border-bottom: 0.1rem solid #dadada;
 }
 
 .error-numerico {
-    color: rgb(235, 72, 72);
-    margin-top: 5px;
+  color: rgb(235, 72, 72);
+  margin-top: 5px;
 }
 
 .fields {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .field {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px; 
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 .calculate {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .result-items {
-    display: flex;
-    color: #daf13e;
-    align-items: center ;
+  display: flex;
+  color: #daf13e;
+  align-items: center;
 }
 
 .result-item {
-    margin: 0;
+  margin: 0;
 }
 
 .result {
-    width: 100px;
-    height: 47px; 
-    line-height: 47px;
-    color: rgb(87, 93, 173);
-    text-align: center;
-    font-size: 30px; 
-    font-weight: 800;
-    border-bottom: 1px solid rgb(87, 93, 173);
-    border-right: 1px solid rgb(87, 93, 173);
-    border-radius: 5px;
-    box-shadow: 5px 5px 15px rgb(87, 93, 173);
-    margin: 0 15px;
+  width: 100px;
+  height: 47px;
+  line-height: 47px;
+  color: rgb(87, 93, 173);
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  border-bottom: 1px solid rgb(87, 93, 173);
+  border-right: 1px solid rgb(87, 93, 173);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgb(87, 93, 173);
+  margin: 0 15px;
 }
 
 .newStrategy {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
- }
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}

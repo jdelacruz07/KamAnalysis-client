@@ -7,10 +7,10 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent implements OnInit {
-  timer$ = new Subject;
+  timer$ = new Subject();
   timer: any;
   result: number;
   newDate: Date;
@@ -22,8 +22,8 @@ export class TimerComponent implements OnInit {
   error: boolean;
 
   constructor() {
-    this.timer$.pipe(debounceTime(1000)).subscribe(seconds => {
-      this.workTimer(seconds)
+    this.timer$.pipe(debounceTime(1000)).subscribe((seconds) => {
+      this.workTimer(seconds);
     });
   }
 
@@ -40,10 +40,12 @@ export class TimerComponent implements OnInit {
       this.finished = false;
       this.timer = seconds;
       this.timer = parseInt(this.timer);
-      this.subscription = interval(1000).pipe(take(this.timer)).subscribe(count => {
-        this.result = this.timer - (count + 1);
-        this.result == 0 ? this.printFinish() : this.result;
-      });
+      this.subscription = interval(1000)
+        .pipe(take(this.timer))
+        .subscribe((count) => {
+          this.result = this.timer - (count + 1);
+          this.result == 0 ? this.printFinish() : this.result;
+        });
     } else {
       this.time = null;
       this.finished = true;
@@ -59,14 +61,15 @@ export class TimerComponent implements OnInit {
   }
 
   startTimer(seconds) {
-    this.timer$.next(seconds)
+    this.timer$.next(seconds);
   }
 
   printFinish() {
     this.time = null;
     this.finished = true;
     let audio = new Audio();
-    audio.src = 'https://kamanalysys.s3.eu-central-1.amazonaws.com/assets/alarma_alarma_es_tu_mujer.mp3';
+    audio.src =
+      'https://kamanalysys.s3.eu-central-1.amazonaws.com/assets/alarma_alarma_es_tu_mujer.mp3';
     audio.play();
     this.finishTime();
   }
@@ -74,8 +77,14 @@ export class TimerComponent implements OnInit {
   finishTime() {
     this.newDate = new Date();
     let endHours = this.newDate.getHours();
-    let endMinutes = this.newDate.getMinutes() < 10 ? "0" + this.newDate.getMinutes() : this.newDate.getMinutes();
-    let endSeconds = this.newDate.getSeconds() < 10 ? "0" + this.newDate.getSeconds() : this.newDate.getSeconds();
-    this.endTime = `${endHours}:${endMinutes}:${endSeconds}`
+    let endMinutes =
+      this.newDate.getMinutes() < 10
+        ? '0' + this.newDate.getMinutes()
+        : this.newDate.getMinutes();
+    let endSeconds =
+      this.newDate.getSeconds() < 10
+        ? '0' + this.newDate.getSeconds()
+        : this.newDate.getSeconds();
+    this.endTime = `${endHours}:${endMinutes}:${endSeconds}`;
   }
 }

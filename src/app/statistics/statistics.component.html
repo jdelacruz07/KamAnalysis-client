@@ -1,72 +1,99 @@
 <div class="container">
-    <header class="header">
-        <h1>El hueco</h1>
-        <dl>
-            <dt>¿Que es un hueco en el análisis técnico?</dt>
-            <dd>Son espacios que quedan en el gráfico de velas y que indican que no ha habido transacciones. Se forma un
-                hueco ascendente cuando el precio más bajo de un dia de contratación es más alto que el máximo del día
-                anterior. Un hueco ascendente normalmente indica fortaleza en el mercado, mientras que un hueco
-                descendente es señal de debilidad.</dd>
-        </dl>
-        <p class="percentage">El hueco tiene una probablidad de cierre del:<span class="percentage-outcome">{{
-                percentage | percent: '1.0-2'}}</span>
-        </p>
-    </header>
+  <header class="header">
+    <h1>El hueco</h1>
+    <dl>
+      <dt>¿Que es un hueco en el análisis técnico?</dt>
+      <dd>
+        Son espacios que quedan en el gráfico de velas y que indican que no ha
+        habido transacciones. Se forma un hueco ascendente cuando el precio más
+        bajo de un dia de contratación es más alto que el máximo del día
+        anterior. Un hueco ascendente normalmente indica fortaleza en el
+        mercado, mientras que un hueco descendente es señal de debilidad.
+      </dd>
+    </dl>
+    <p class="percentage">
+      El hueco tiene una probablidad de cierre del:<span
+        class="percentage-outcome"
+        >{{ percentage | percent: "1.0-2" }}</span
+      >
+    </p>
+  </header>
 
-    <section>
-        <form [formGroup]="gapForm" (ngSubmit)="addGap()">
-            <div class="form-fields">
-                <div class="form-field">
-                    <label for="gap">Se cierra el hueco:</label>
-                    <input id="gap" type="radio" value="Si" formControlName="isClose">Si
-                    <input id="gap" type="radio" value="No" formControlName="isClose">No
-                </div>
-                <div class="form-field">
-                    <label for="date">Fecha: </label>
-                    <input class="date" id="date" type="date" formControlName="dateSelected">
-                </div>
-            </div>
-            <div class="button-container">
-                <button class="btn btn-success" type="submit" [disabled]="!gapForm.valid"
-                    [disabled]="!isAuthenticated()">Guardar</button>
-                <!-- <button class="btn btn-success" type="submit" [disabled]="!gapForm.valid">Guardar</button> -->
-
-            </div>
-            <div class="gap-error" *ngIf="gapError">{{gapError}}</div>
-        </form>
-    </section>
-
-    <section>
-        <h2 class="historical">Historico</h2>
-        <table>
-            <th>Fecha</th>
-            <th>Cierre</th>
-            <tr class="data-gap" [@gapAnimation]="animationList" *ngFor="let gap of gapHistory; let i = index">
-                <td>
-                    {{gap.dateSelected | date: 'd MMM, y'}}
-                </td>
-                <td>
-                    {{gap.isClose}}
-                </td>
-                <td>
-                    <button class="btn btn-secondary" [disabled]="!isAuthenticated()"
-                        (click)="deleteGap(gap.id, i)">Eliminar</button>
-                    <!-- <button class="btn btn-secondary" (click)="deleteGap(gap.id, i)">Eliminar</button> -->
-                </td>
-            </tr>
-        </table>
-    </section>
-
-    <section>
-        <div class="menu">
-            <div *ngFor="let menu of menuDisplay; let i = index">
-                <div *ngIf="page == i  ; else elementMenu">
-                    <div (click)="onChangePage(i)" class="element-menu"> <u> {{menu}} </u> </div>
-                </div>
-                <ng-template #elementMenu>
-                    <div (click)="onChangePage(i)" class="element-menu"> {{menu}} </div>
-                </ng-template>
-            </div>
+  <section>
+    <form [formGroup]="gapForm" (ngSubmit)="addGap()">
+      <div class="form-fields">
+        <div class="form-field">
+          <label for="gap">Se cierra el hueco:</label>
+          <input id="gap" type="radio" value="Si" formControlName="isClose" />Si
+          <input id="gap" type="radio" value="No" formControlName="isClose" />No
         </div>
-    </section>
+        <div class="form-field">
+          <label for="date">Fecha: </label>
+          <input
+            class="date"
+            id="date"
+            type="date"
+            formControlName="dateSelected"
+          />
+        </div>
+      </div>
+      <div class="button-container">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!gapForm.valid"
+          [disabled]="!isAuthenticated()"
+        >
+          Guardar
+        </button>
+        <!-- <button class="btn btn-success" type="submit" [disabled]="!gapForm.valid">Guardar</button> -->
+      </div>
+      <div class="gap-error" *ngIf="gapError">{{ gapError }}</div>
+    </form>
+  </section>
+
+  <section>
+    <h2 class="historical">Historico</h2>
+    <table>
+      <th>Fecha</th>
+      <th>Cierre</th>
+      <tr
+        class="data-gap"
+        [@gapAnimation]="animationList"
+        *ngFor="let gap of gapHistory; let i = index"
+      >
+        <td>
+          {{ gap.dateSelected | date: "d MMM, y" }}
+        </td>
+        <td>
+          {{ gap.isClose }}
+        </td>
+        <td>
+          <button
+            class="btn btn-secondary"
+            [disabled]="!isAuthenticated()"
+            (click)="deleteGap(gap.id, i)"
+          >
+            Eliminar
+          </button>
+          <!-- <button class="btn btn-secondary" (click)="deleteGap(gap.id, i)">Eliminar</button> -->
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="menu">
+      <div *ngFor="let menu of menuDisplay; let i = index">
+        <div *ngIf="page == i; else elementMenu">
+          <div (click)="onChangePage(i)" class="element-menu">
+            <u> {{ menu }} </u>
+          </div>
+        </div>
+        <ng-template #elementMenu>
+          <div (click)="onChangePage(i)" class="element-menu">{{ menu }}</div>
+        </ng-template>
+      </div>
+    </div>
+  </section>
 </div>
