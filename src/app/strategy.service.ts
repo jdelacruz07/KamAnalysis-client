@@ -13,13 +13,13 @@ export class StrategyService {
   constructor(private http: HttpClient) {}
 
   addStrategy(strategy: Strategy) {
-    const CSRF_TOKEN = document.cookie.match(
-      new RegExp(`XSRF-TOKEN=([^;]+)`)
-    )[1];
+    // const CSRF_TOKEN = document.cookie.match(
+    //   new RegExp(`XSRF-TOKEN=([^;]+)`)
+    // )[1];
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-XSRF-TOKEN': CSRF_TOKEN,
+        // 'X-XSRF-TOKEN': CSRF_TOKEN,
       }),
     };
     return this.http.post<Strategy>(this.url, strategy, httpOptions);

@@ -26,12 +26,12 @@ export class GapService {
   }
 
   configHeader() {
-    const XSRF_TOKEN = document.cookie.match(
-      new RegExp(`XSRF-TOKEN=([^;]+)`)
-    )[1];
+    // const XSRF_TOKEN = document.cookie.match(
+    //   new RegExp(`XSRF-TOKEN=([^;]+)`)
+    // )[1];
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-XSRF-TOKEN': XSRF_TOKEN,
+        // 'X-XSRF-TOKEN': XSRF_TOKEN,
         'Content-Type': 'application/json',
       }),
       // }), withCredentials: true,
